@@ -1,3 +1,5 @@
+*/.DS_Store
+.DS_Store
 # Miscellaneous
 flutter_project/*.class
 flutter_project/*.log
