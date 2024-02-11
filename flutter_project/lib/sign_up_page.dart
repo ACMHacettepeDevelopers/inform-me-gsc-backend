@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LogInPage extends StatefulWidget {
-  const LogInPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LogInPage> createState() => _LogInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LogInPageState extends State<LogInPage> {
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,34 +17,61 @@ class _LogInPageState extends State<LogInPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/5.png'),
-                  radius: 40,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Welcome Back!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 26,
-                    color: Colors.amber,
-                  ),
-                ),
-                SizedBox(
-                  height: 2,
-                ),
-                Text(
-                  'Nice to see you again!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.amber,
-                  ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 50,
+                    ),
+                    CircleAvatar(
+                      backgroundImage: AssetImage('assets/5.png'),
+                      radius: 30,
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'Not a mebmer?',
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.amber,
+                          ),
+                        ),
+                        Text(
+                          'You can register.',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.amber,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.orange),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'username',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -82,6 +109,26 @@ class _LogInPageState extends State<LogInPage> {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.orange),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                      child: TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 're-type password',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 Container(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: ElevatedButton.icon(
@@ -94,8 +141,8 @@ class _LogInPageState extends State<LogInPage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    icon: Icon(Icons.login_outlined),
-                    label: Text('Log In'),
+                    icon: Icon(Icons.create_sharp),
+                    label: Text('Register'),
                   ),
                 ),
                 Row(
@@ -105,23 +152,23 @@ class _LogInPageState extends State<LogInPage> {
                       height: 30,
                     ),
                     Text(
-                      'You are not a member? ',
+                      'You are a member? ',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/signuppage');
+                        Navigator.pushNamed(context, '/loginpage');
                       },
                       child: Text(
-                        'Register now.',
+                        'Log In now.',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.yellow[800],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Container(
@@ -129,7 +176,7 @@ class _LogInPageState extends State<LogInPage> {
                   child: ElevatedButton.icon(
                     onPressed: () {},
                     icon: Image.asset('assets/googlelogo.png'),
-                    label: Text('Log In with Google.'),
+                    label: Text('Sign Up with Google.'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: Colors.yellow[800],
