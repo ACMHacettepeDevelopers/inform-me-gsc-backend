@@ -16,7 +16,7 @@ class _StarterPageState extends State<StarterPage> {
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/12.png'),
+              image: AssetImage('assets/images/12.png'),
               fit: BoxFit.cover,
             ),
           ),

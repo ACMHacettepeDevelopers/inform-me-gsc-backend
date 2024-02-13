@@ -16,7 +16,7 @@ class _LogInPageState extends State<LogInPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/8.png"),
+            image: AssetImage("assets/images/8.png"),
             fit: BoxFit.cover,
             )
         ),
@@ -27,7 +27,7 @@ class _LogInPageState extends State<LogInPage> {
                 SizedBox(
                   height: 80,
                 ),
-                Image.asset('assets/login_transp.png',
+                Image.asset('assets/images/login_transp.png',
                 height: 200,
                 width: 200,
                 ),   
@@ -107,7 +107,7 @@ class _LogInPageState extends State<LogInPage> {
                   padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                   child: ElevatedButton.icon(
                     onPressed: () {},
-                    icon: Image.asset('assets/googlelogo.png'),
+                    icon: Image.asset('assets/images/googlelogo.png'),
                     label: Text('Log In with Google'),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(

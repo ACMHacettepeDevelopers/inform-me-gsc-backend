@@ -24,7 +24,7 @@ class _SignUpPageState extends State<SignUpPage> {
       body: Container(
          decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/8.png"),
+            image: AssetImage("assets/images/8.png"),
             fit: BoxFit.cover,
             )
         ),
@@ -168,7 +168,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                   child: ElevatedButton.icon(
                     onPressed: () {},
-                    icon: Image.asset('assets/googlelogo.png'),
+                    icon: Image.asset('assets/images/googlelogo.png'),
                     label: Text('Sign Up with Google.'),
                     
                     style: ElevatedButton.styleFrom(
