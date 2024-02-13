@@ -32,6 +32,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "csc_picker",
+      "rootUri": "file:///Users/berraurhan/.pub-cache/hosted/pub.dev/csc_picker-0.2.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "cupertino_icons",
       "rootUri": "file:///Users/berraurhan/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.6",
       "packageUri": "lib/",
@@ -152,7 +158,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-02-13T13:44:22.295951Z",
+  "generated": "2024-02-13T13:51:16.958802Z",
   "generator": "pub",
   "generatorVersion": "3.2.6"
 }
