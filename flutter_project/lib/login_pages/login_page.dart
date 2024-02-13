@@ -41,7 +41,6 @@ class _LogInPageState extends State<LogInPage> {
                     fontWeight: FontWeight.bold,
                     fontSize: 30,
                     fontFamily: 'Montserrat',
-
                     color: Colors.white,
                   ),
                 ),
@@ -67,7 +66,7 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(43, 10, 43, 5),
+                  padding: EdgeInsets.fromLTRB(43, 3, 43, 5),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -102,13 +101,18 @@ class _LogInPageState extends State<LogInPage> {
                     label: Text('Log In'),
                   ),
                 ),
+                
 
                 Container(
+                  padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                   child: ElevatedButton.icon(
                     onPressed: () {},
                     icon: Image.asset('assets/googlelogo.png'),
                     label: Text('Log In with Google'),
                     style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       backgroundColor: Colors.white,
                       foregroundColor: const Color.fromRGBO(241, 82, 32, 1),
                       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -116,7 +120,9 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                 ),
 
-
+                SizedBox(
+                  height: 50,
+                ),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

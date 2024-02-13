@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -11,48 +13,44 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: SafeArea(
+      body: Container(
+         decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/8.png"),
+            fit: BoxFit.cover,
+            )
+        ),
+       
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 50,
+                SizedBox(
+                    height: 70,
+                  ),
+                Text(
+                  'Not a member ?',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,   
                     ),
-                    CircleAvatar(
-                      backgroundImage: AssetImage('assets/5.png'),
-                      radius: 30,
+                  ),
+                  Text(
+                  'Register now !',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                     ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'Not a mebmer?',
-                          style: TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.amber,
-                          ),
-                        ),
-                        Text(
-                          'You can register.',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.amber,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
+                  padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -71,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                  padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -90,7 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                 padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -110,7 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                 padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -135,7 +133,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
-                      foregroundColor: Colors.yellow[800],
+                      foregroundColor: const Color.fromRGBO(241, 82, 32, 1),
                       padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -145,12 +143,30 @@ class _SignUpPageState extends State<SignUpPage> {
                     label: Text('Register'),
                   ),
                 ),
+                 Container(
+                  padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
+                  child: ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: Image.asset('assets/googlelogo.png'),
+                    label: Text('Sign Up with Google.'),
+                    
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      backgroundColor: Colors.white,
+                      foregroundColor: const Color.fromRGBO(241, 82, 32, 1),
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                    height: 130,
+                  ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 30,
-                    ),
                     Text(
                       'You are a member? ',
                       style: TextStyle(
@@ -165,25 +181,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         'Log In now.',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.yellow[800],
+                          color: Colors.white,
                         ),
                       ),
                     ),
                   ],
                 ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: Image.asset('assets/googlelogo.png'),
-                    label: Text('Sign Up with Google.'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.yellow[800],
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                    ),
-                  ),
-                ),
+               
               ],
             ),
           ),
