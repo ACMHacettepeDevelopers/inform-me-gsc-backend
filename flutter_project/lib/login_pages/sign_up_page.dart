@@ -1,6 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:csc_picker/model/select_status_model.dart';
 import 'package:flutter/material.dart';
+import 'package:csc_picker/csc_picker.dart';
+import 'package:flutter/material.dart';
+
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -10,6 +15,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  String selectedCountry = "";
+  String address = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,9 +132,22 @@ class _SignUpPageState extends State<SignUpPage> {
                           hintText: 're-type password',
                         ),
                       ),
+                      
                     ),
                   ),
                 ),
+                // Add CSCPicker here
+                 Padding(
+                  padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
+                  child: CSCPicker(
+                    flagState: CountryFlag.ENABLE,
+                    onCountryChanged: (country) {},
+                    showStates: false,
+                    showCities: false,
+                    dropdownDialogRadius: 15,   
+                  ),
+                ),
+
                 Container(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: ElevatedButton.icon(
@@ -161,14 +182,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 SizedBox(
-                    height: 130,
+                    height: 100,
                   ),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'You are a member? ',
+                      'A member? ',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -187,7 +208,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ],
                 ),
-               
               ],
             ),
           ),
