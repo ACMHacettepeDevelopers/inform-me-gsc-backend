@@ -181,7 +181,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         'Log In now.',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: const Color.fromRGBO(241, 82, 32, 1),
                         ),
                       ),
                     ),
