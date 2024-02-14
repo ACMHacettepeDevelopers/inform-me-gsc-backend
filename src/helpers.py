@@ -2,7 +2,7 @@ from article import Article
 from src.scraper import Scraper
 
 
-def get_articles_from_res(res: dict):
+def _get_articles_from_res(res: dict):
     """Returns list of article objects using the given response"""
     articles = list()
 
@@ -15,11 +15,22 @@ def get_articles_from_res(res: dict):
     return articles
 
 
-def get_available_languages():
+def _get_available_languages():
     return Scraper.AVAILABLE_LANGUAGES
 
-
-def get_sites(country, category):
+def _get_sites(country, category):
     # TODO
     """Returns site parameter for the request in BingNewsClient"""
     pass
+
+def _get_lang_code_from_country_code(country_code):
+    """Returns ISO639_code_from_ISO_1366 """
+    pass
+
+def get_category_translation(country,category_to_translate):
+    # TODO
+    """Returns category label for the front end
+    Params:
+    category_to_translate should be English"""
+    pass
+

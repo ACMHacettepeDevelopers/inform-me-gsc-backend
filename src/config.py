@@ -1,0 +1,1 @@
+BING_NEWS_API_KEY = ""
