@@ -2,8 +2,6 @@ from config import *
 from news_api_client import *
 from scraper import *
 from audio import *
-
-
 class PodcastGenerator:
 
     # TODO
