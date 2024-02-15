@@ -1,22 +1,22 @@
 */.DS_Store
 .DS_Store
 # Miscellaneous
-flutter_project/*.class
-flutter_project/*.log
-flutter_project/*.pyc
-flutter_project/*.swp
-flutter_project/.DS_Store
-flutter_project/.atom/
-flutter_project/.buildlog/
-flutter_project/.history
-flutter_project/.svn/
-flutter_project/migrate_working_dir/
+/*.class
+/*.log
+/*.pyc
+/*.swp
+/.DS_Store
+/.atom/
+/.buildlog/
+/.history
+/.svn/
+/migrate_working_dir/
 
 # IntelliJ related
-flutter_project/*.iml
-flutter_project/*.ipr
-flutter_project/*.iws
-flutter_project/.idea/
+/*.iml
+/*.ipr
+/*.iws
+/.idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -24,22 +24,22 @@ flutter_project/.idea/
 #.vscode/
 
 # Flutter/Dart/Pub related
-flutter_project/**/doc/api/
-flutter_project/**/ios/Flutter/.last_build_id
-flutter_project/.dart_tool/
-flutter_project/.flutter-plugins
-flutter_project/.flutter-plugins-dependencies
-flutter_project/.pub-cache/
-flutter_project/.pub/
-flutter_project/build/
+/**/doc/api/
+/**/ios/Flutter/.last_build_id
+/.dart_tool/
+/.flutter-plugins
+/.flutter-plugins-dependencies
+/.pub-cache/
+/.pub/
+/build/
 
 # Symbolication related
-flutter_project/app.*.symbols
+/app.*.symbols
 
 # Obfuscation related
-flutter_project/app.*.map.json
+/app.*.map.json
 
 # Android Studio will place build artifacts here
-flutter_project/android/app/debug
-flutter_project/android/app/profile
-flutter_project/android/app/release
+/android/app/debug
+/android/app/profile
+/android/app/release
