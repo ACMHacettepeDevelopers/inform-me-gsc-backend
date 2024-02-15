@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '356990032495',
     projectId: 'inform-me-414118',
     storageBucket: 'inform-me-414118.appspot.com',
+    iosClientId: '356990032495-4rs0a4r02rtua3er9795q0q8bk6ppjtq.apps.googleusercontent.com',
     iosBundleId: 'com.example.informme',
   );
 
@@ -76,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '356990032495',
     projectId: 'inform-me-414118',
     storageBucket: 'inform-me-414118.appspot.com',
+    iosClientId: '356990032495-k3kinb55jlb8511davcipr0v846h02c5.apps.googleusercontent.com',
     iosBundleId: 'com.example.informme.RunnerTests',
   );
 }
