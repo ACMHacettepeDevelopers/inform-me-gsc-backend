@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LogInPage extends StatefulWidget {
@@ -10,16 +11,59 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
+  final eMailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  void signInFunct() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: eMailController.text,
+        password: passwordController.text,
+      );
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      errorMessage(e.code);
+    }
+  }
+
+  void errorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.amber,
+          title: Center(
+            child: Text(
+              message,
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/8.png"),
-            fit: BoxFit.cover,
-            )
-        ),
+            image: DecorationImage(
+          image: AssetImage("assets/images/8.png"),
+          fit: BoxFit.cover,
+        )),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -27,13 +71,14 @@ class _LogInPageState extends State<LogInPage> {
                 SizedBox(
                   height: 80,
                 ),
-                Image.asset('assets/images/login_transp.png',
-                height: 200,
-                width: 200,
-                ),   
+                Image.asset(
+                  'assets/images/login_transp.png',
+                  height: 200,
+                  width: 200,
+                ),
                 Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),  
-                ),           
+                  padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                ),
                 Text(
                   'Welcome Back!',
                   style: TextStyle(
@@ -44,7 +89,6 @@ class _LogInPageState extends State<LogInPage> {
                     color: Colors.white,
                   ),
                 ),
-                
                 Padding(
                   padding: EdgeInsets.fromLTRB(43, 30, 43, 5),
                   child: Container(
@@ -56,8 +100,8 @@ class _LogInPageState extends State<LogInPage> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                       child: TextField(
+                        controller: eMailController,
                         decoration: InputDecoration(
-                          
                           border: InputBorder.none,
                           hintText: 'e-mail',
                         ),
@@ -76,6 +120,7 @@ class _LogInPageState extends State<LogInPage> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                       child: TextField(
+                        controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -88,7 +133,9 @@ class _LogInPageState extends State<LogInPage> {
                 Container(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      signInFunct();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: const Color.fromRGBO(241, 82, 32, 1),
@@ -101,8 +148,6 @@ class _LogInPageState extends State<LogInPage> {
                     label: Text('Log In'),
                   ),
                 ),
-                
-
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                   child: ElevatedButton.icon(
@@ -119,11 +164,9 @@ class _LogInPageState extends State<LogInPage> {
                     ),
                   ),
                 ),
-
                 SizedBox(
                   height: 50,
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -154,7 +197,6 @@ class _LogInPageState extends State<LogInPage> {
                     )
                   ],
                 ),
-                
               ],
             ),
           ),

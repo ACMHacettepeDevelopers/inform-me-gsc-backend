@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:csc_picker/model/select_status_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:csc_picker/csc_picker.dart';
-import 'package:flutter/material.dart';
-
-
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -17,46 +15,79 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   String selectedCountry = "";
   String address = "";
+  final usernameController = TextEditingController();
+  final eMailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final passwordConfirmController = TextEditingController();
+  final countryController = TextEditingController();
+
+  void signUpFunct() async {
+    if (passwordController.text == passwordConfirmController.text) {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: eMailController.text,
+        password: passwordController.text,
+      );
+    } else {
+      errorMessage('Passwords are\'nt same');
+    }
+  }
+
+  void errorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.amber,
+          title: Center(
+            child: Text(
+              message,
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/8.png"),
-            fit: BoxFit.cover,
-            )
-        ),
-       
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage("assets/images/8.png"),
+          fit: BoxFit.cover,
+        )),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
-                    height: 70,
-                  ),
+                  height: 70,
+                ),
                 Text(
                   'Not a member ?',
                   style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,   
-                    ),
+                    color: Colors.white,
                   ),
-                  Text(
+                ),
+                Text(
                   'Register now !',
                   style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
-                    ),
                   ),
-                  SizedBox(
-                    height: 50,
-                  ),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
                   child: Container(
@@ -68,6 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                       child: TextField(
+                        controller: usernameController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'username',
@@ -87,6 +119,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                       child: TextField(
+                        controller: eMailController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'e-mail',
@@ -96,7 +129,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 Padding(
-                 padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
+                  padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -106,6 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                       child: TextField(
+                        controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -116,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 Padding(
-                 padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
+                  padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -126,32 +160,34 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                       child: TextField(
+                        controller: passwordConfirmController,
                         obscureText: true,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 're-type password',
                         ),
                       ),
-                      
                     ),
                   ),
                 ),
                 // Add CSCPicker here
-                 Padding(
+                Padding(
                   padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
                   child: CSCPicker(
                     flagState: CountryFlag.ENABLE,
                     onCountryChanged: (country) {},
                     showStates: false,
                     showCities: false,
-                    dropdownDialogRadius: 15,   
+                    dropdownDialogRadius: 15,
                   ),
                 ),
 
                 Container(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      signUpFunct();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: const Color.fromRGBO(241, 82, 32, 1),
@@ -164,13 +200,12 @@ class _SignUpPageState extends State<SignUpPage> {
                     label: Text('Register'),
                   ),
                 ),
-                 Container(
+                Container(
                   padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                   child: ElevatedButton.icon(
                     onPressed: () {},
                     icon: Image.asset('assets/images/googlelogo.png'),
                     label: Text('Sign Up with Google.'),
-                    
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -182,8 +217,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 SizedBox(
-                    height: 100,
-                  ),
+                  height: 100,
+                ),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "356990032495",
+    "project_id": "inform-me-414118",
+    "storage_bucket": "inform-me-414118.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356990032495:android:81c34c902d01e7f3670b9a",
+        "android_client_info": {
+          "package_name": "com.example.informme"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3tBdf4SNU9ZvtcmBrhS7q507DuP-TPcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
