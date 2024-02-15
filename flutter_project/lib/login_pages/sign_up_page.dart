@@ -4,6 +4,7 @@ import 'package:csc_picker/model/select_status_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:csc_picker/csc_picker.dart';
+import 'package:loginpage/google_service.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -203,7 +204,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      GoogleServiceClass().gSignInFunc();
+                    },
                     icon: Image.asset('assets/images/googlelogo.png'),
                     label: Text('Sign Up with Google.'),
                     style: ElevatedButton.styleFrom(

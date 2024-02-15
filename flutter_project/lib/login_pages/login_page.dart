@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:loginpage/google_service.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -140,7 +141,9 @@ class _LogInPageState extends State<LogInPage> {
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      GoogleServiceClass().gSignInFunc();
+                    },
                     icon: Image.asset('assets/images/googlelogo.png'),
                     label: Text('Log In with Google'),
                     style: ElevatedButton.styleFrom(
