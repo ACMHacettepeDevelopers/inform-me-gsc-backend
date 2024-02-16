@@ -13,6 +13,33 @@ class SignUpPage extends StatefulWidget {
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
+
+void showRegistrationSuccessDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Registration Successful'),
+        content: Center(
+          child: Text(
+            'Congratulations! You have successfully registered.',
+            textAlign: TextAlign.center, // Align text to center
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
 class _SignUpPageState extends State<SignUpPage> {
   String selectedCountry = "";
   String address = "";
@@ -28,6 +55,8 @@ class _SignUpPageState extends State<SignUpPage> {
         email: eMailController.text,
         password: passwordController.text,
       );
+      // pop up ekle
+      showRegistrationSuccessDialog(context);
     } else {
       errorMessage('Passwords are\'nt same');
     }
