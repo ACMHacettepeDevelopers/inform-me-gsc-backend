@@ -1,5 +1,5 @@
 from flask_app import app
-
+import json
 
 def test_translate_category():
     with app.test_client() as client:

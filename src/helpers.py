@@ -1,5 +1,5 @@
 from article import Article
-from src.scraper import Scraper
+from scraper import Scraper
 from translate import Translator
 
 
