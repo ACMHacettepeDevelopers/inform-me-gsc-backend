@@ -3,7 +3,6 @@ from src.scraper import Scraper
 from translate import Translator
 from news_api_client import BingNewsClient
 
-
 def get_articles_from_res(res: dict):
     """Returns list of article objects using the given response"""
     articles = list()
@@ -31,28 +30,34 @@ def get_sites(country, category):
 
     pass
 
-
 def get_lang_code_from_mkt(mkt_code):
     # Extracting the language code
     lang_code = mkt_code.split('-')[0]
     return lang_code
 
+def get_lang_code_from_country_code(country_code):
+    """Returns language of the country_code (declared in the bing API mkt
+    returns none if the country_code is not supported
+    Paraös:
+    country_code uppercase code of the country"""
+
+    lang_code = None
+    mkts = BingNewsClient.MKTS
+
+    for mkt_code in mkts:
+        country_code_parsed = mkt_code.split("-")[1]
+        if country_code_parsed == country_code:
+            lang_code= mkt_code.split("-")[0]
+
+    return lang_code
 
 def get_category_translation(country_code, category_to_translate):
-    # TODO
     """Returns category in the language of country (declared in the bing API mkt)
     Params:
     category_to_translate should be English
     country code should be uppercase code"""
 
-    mkts = BingNewsClient.MKTS
-
-    lang_to_translate_to = None
-
-    for mkt_code in mkts:
-        country_code_parsed = mkt_code.split("-")[1]
-        if country_code_parsed == country_code:
-            lang_to_translate_to = mkt_code.split("-")[0]
+    lang_to_translate_to = get_lang_code_from_country_code(country_code)
 
     if lang_to_translate_to:
         translator = Translator(to_lang= lang_to_translate_to)

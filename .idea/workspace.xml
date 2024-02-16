@@ -7,10 +7,7 @@
     <list default="true" id="26c73bea-003d-44a8-be26-fb9c44ade46b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/flask_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/flask_app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/news_api_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/news_api_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +98,7 @@
       <workItem from="1707987363539" duration="630000" />
       <workItem from="1708014079766" duration="4398000" />
       <workItem from="1708068272215" duration="345000" />
-      <workItem from="1708087216291" duration="1527000" />
+      <workItem from="1708087216291" duration="2179000" />
     </task>
     <servers />
   </component>
