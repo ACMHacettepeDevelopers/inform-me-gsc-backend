@@ -6,7 +6,8 @@ from scraper import *
 from src.audio import *
 from src.user import User
 #
-## CLASS FOR DEMONSTRATION, WON'T BE USED
+## CLASS FOR DEBUGGING, WON'T BE USED IN PRODUCTION
+
 #q = "ekonomi (site:bbc.com OR site:cnn.com)"
 #client = BingNewsClient(BING_NEWS_API_KEY)
 #articles = client.fetch_news_query(q,"tr-TR","tr")

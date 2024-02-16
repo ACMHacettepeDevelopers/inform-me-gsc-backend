@@ -1,5 +1,6 @@
 from datetime import date
 
+
 from article import Article
 from gtts import gTTS
 from translate import Translator
