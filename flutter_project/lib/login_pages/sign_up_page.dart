@@ -4,6 +4,7 @@ import 'package:csc_picker/model/select_status_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:csc_picker/csc_picker.dart';
+import 'package:loginpage/FireStore.dart';
 import 'package:loginpage/firebase/google_service.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -12,7 +13,6 @@ class SignUpPage extends StatefulWidget {
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
-
 
 void showRegistrationSuccessDialog(BuildContext context) {
   showDialog(
@@ -39,9 +39,8 @@ void showRegistrationSuccessDialog(BuildContext context) {
   );
 }
 
-
 class _SignUpPageState extends State<SignUpPage> {
-  String selectedCountry = "";
+  String selectedCountry = "abc";
   String address = "";
   final usernameController = TextEditingController();
   final eMailController = TextEditingController();
@@ -54,6 +53,11 @@ class _SignUpPageState extends State<SignUpPage> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: eMailController.text,
         password: passwordController.text,
+      );
+      FireStoreAuthService().registerUser(
+        username: usernameController.text,
+        email: eMailController.text,
+        country: selectedCountry,
       );
       // pop up ekle
       showRegistrationSuccessDialog(context);
