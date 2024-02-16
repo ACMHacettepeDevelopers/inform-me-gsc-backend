@@ -31,6 +31,7 @@ class Scraper:
 
                 # check summary, if valid map to article_fetched
                 article_fetched.summary_is_valid = True
+
                 #article_fetched.summary_is_valid =  Scraper.is_a_valid_summary(summary,language)
                 if article_fetched.summary_is_valid:
                     article_fetched.summary = summary
