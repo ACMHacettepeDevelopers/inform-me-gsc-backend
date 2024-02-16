@@ -61,7 +61,7 @@ def get_lang_code_from_country_code(country_code):
     for mkt_code in mkts:
         country_code_parsed = mkt_code.split("-")[1]
         if country_code_parsed == country_code:
-            lang_code = mkt_code.split("-")[0]
+            return mkt_code.split("-")[0]
 
     return lang_code
 
