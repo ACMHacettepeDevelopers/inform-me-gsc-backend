@@ -18,7 +18,7 @@ class PodcastGenerator:
     def create_podcast(self, country_code, q, count, podcast_file_name, debug_mode=False):
         """Creates news podcast according to params.
         Params:
-        country: country domain to search the news in (also determinates the language)
+        country: country domain to search the news in (also determines the language)
         q: Search item for podcast, e.g. Economy, Madam Curie
         count : Amount of news to be retrieved
         podcast_file_name : mp3 file to save the podcast in"""
