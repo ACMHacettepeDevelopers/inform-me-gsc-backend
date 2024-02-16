@@ -1,3 +1,5 @@
+import time
+
 import newspaper
 class Scraper:
 
@@ -5,7 +7,7 @@ class Scraper:
     AVAILABLE_LANGUAGES = ["ar", "be", "bg", "da", "de", "el", "en", "es", "et", "fa", "fi", "fr", "he", "hi", "hr", "hu", "id", "it", "ja", "ko", "lt", "mk", "nb", "nl", "no", "pl", "pt", "ro", "ru", "sl", "sr", "sv", "sw", "th", "tr", "uk", "vi", "zh"]
 
     @staticmethod
-    def load_summaries(articles_fetched,language,debug = False,debug_name = None):
+    def load_summaries(articles_fetched,language,debug = False,debug_file_name = None):
         """Gets summaries of articles via scraping and maps to article objects.
         Alters article.summary and article._summary_is_valid
         If not available sets summary to "" and article._summary_is_valid to false"""
@@ -17,6 +19,7 @@ class Scraper:
 
         # find summaries of articles via scraping (if available) and map to them
         for i, article_fetched in enumerate(articles_fetched):
+            time.sleep(0.5)
             article = newspaper.Article(article_fetched.URL, language = language, fetch_images=False)
 
             try:
@@ -27,7 +30,8 @@ class Scraper:
                 summary = article.summary
 
                 # check summary, if valid map to article_fetched
-                article_fetched.summary_is_valid =  Scraper.is_a_valid_summary(summary,language)
+                article_fetched.summary_is_valid = True
+                #article_fetched.summary_is_valid =  Scraper.is_a_valid_summary(summary,language)
                 if article_fetched.summary_is_valid:
                     article_fetched.summary = summary
 
@@ -39,7 +43,7 @@ class Scraper:
                 print(f"url {article_fetched.URL} cant be scraped")
 
         if debug:
-            with open(f'{debug_name}.txt', 'w', encoding="utf-8") as f:
+            with open(f'{debug_file_name}.txt', 'w', encoding="utf-8") as f:
                 f.write(article_strings)
 
     @staticmethod

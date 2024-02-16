@@ -18,19 +18,29 @@ def _get_articles_from_res(res: dict):
 def _get_available_languages():
     return Scraper.AVAILABLE_LANGUAGES
 
+
 def _get_sites(country, category):
     # TODO
     """Returns site parameter for the request in BingNewsClient"""
+    if country == "TR":
+        match category:
+            case "Ekonomi":
+                pass
+            case "Politika":
+                pass
+
     pass
 
-def _get_lang_code_from_country_code(country_code):
-    """Returns ISO639_code_from_ISO_1366 """
-    pass
 
-def get_category_translation(country,category_to_translate):
+def _get_lang_code_from_mkt(mkt_code):
+    # Extracting the language code
+    lang_code = mkt_code.split('-')[0]
+    return lang_code
+
+
+def get_category_translation(country, category_to_translate):
     # TODO
     """Returns category label for the front end
     Params:
     category_to_translate should be English"""
     pass
-

@@ -3,3 +3,4 @@ class User:
         self.country = country
         self.name = name
         self.surname = surname
+        self.id = "?"

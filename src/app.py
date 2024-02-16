@@ -4,19 +4,19 @@ from scraper import *
 from audio import *
 class PodcastGenerator:
 
+    # TODO
     AVAILABLE_COUNTRIES = dict()
 
     def __init__(self):
-
         self.news_client = BingNewsClient(BING_NEWS_API_KEY)
         self.transcript = None
         self.audio = None
 
     @staticmethod
-    def _get_intro_str(country,query):
+    def _get_intro_str(country, query):
         return f"Latest news {country} about {query}"
 
-    def create_podcast(self,country,q,count,podcast_file_name,debug_mode = False):
+    def create_podcast(self, country, q, count, podcast_file_name, debug_mode=False):
         """Creates news podcast according to params.
         Params:
         country: country domain to search the news in (also determinates the language)
@@ -28,20 +28,15 @@ class PodcastGenerator:
         mkt = ""
 
         # fetch articles
-        articles = self.news_client.fetch_news_query(query = q,mkt = mkt,lang = lang,count = count)
-        Scraper.load_summaries(articles,lang,debug=debug_mode)
+        articles = self.news_client.fetch_news_query(query=q, mkt=mkt, lang=lang, count=count)
+        Scraper.load_summaries(articles, lang, debug=debug_mode)
 
-        intro= PodcastGenerator._get_intro_str(country,q)
+        intro = PodcastGenerator._get_intro_str(country, q)
 
-        self.audio = Audio(articles,lang,intro,podcast_file_name)
+        self.audio = Audio(articles, lang, intro, podcast_file_name)
         self.audio.create_audio()
+        self.transcript = self.audio.get_transcript()
 
-
-    # TODO
     def get_transcript(self):
         """Returns transcript of the created podcast"""
-        pass
-
-
-
-
+        return self.transcript

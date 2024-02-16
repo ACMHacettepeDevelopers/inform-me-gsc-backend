@@ -1,5 +1,6 @@
 from datetime import date
 
+
 from article import Article
 from gtts import gTTS
 from translate import Translator
@@ -14,7 +15,7 @@ class Audio:
     # add to appropriate places to eliminate the chance of stop in between sentences
     gTTS_break_token = ". "
 
-    def __init__(self, articles: list, lang, str_intro, output_name):
+    def __init__(self, articles: list, query,country_name,lang,output_name):
 
         """create audio object from ISO 361-1 lang code"""
 
@@ -30,9 +31,11 @@ class Audio:
         self.str_unkown_source = "Sorry, no source were found."
         self.str_news_end = "We've come to the end, thank you for listening."
 
-        self.str_intro = str_intro
+        self.str_intro = f"Latest news in {country_name} about {query}"
 
         self.OUTPUT_NAME = output_name
+
+        self._transcript = ""
 
         # if lang is not english, need to translate these
         if lang != "en":
@@ -45,40 +48,37 @@ class Audio:
             self.str_unkown_source = self._translator.translate(self.str_unkown_source)
             self.str_news_end = self._translator.translate(self.str_news_end)
 
+
     @classmethod
-    def from_country_code(cls, articles: list, country_code: str, intro: str, output_file_name: str):
+    def from_mkt_code(cls, articles: list, mkt_code: str, intro: str, output_file_name: str):
         """create Audio object from ISO 3661 country_code"""
 
-        language_code = helpers.get_ISO639_code_from_ISO_1366(country_code)
+        language_code = helpers._get_lang_code_from_mkt(mkt_code)
         return cls(articles, language_code, intro, output_file_name)
+
+    def _get_source_to_audit(self, article):
+        # return the source to audit
+        return article.SOURCE if article.SOURCE else self.str_unkown_source
 
     def _article_to_text(self, article: Article) -> str:
         """return text of article to audit, return empty text if both description and content is none"""
 
         text = ""
-        title = article._title
+        title = article.TITLE
 
         # add title to text
         text += title + f"{Audio.gTTS_pause}"
 
-        if article._description is not None:
-            text += article._description
+        if article.DESCRIPTION is not None:
+            text += article.DESCRIPTION
 
-        elif article._content is not None:
-            text += article._content
-
-        # response given by the API is problematic
-        # nor content nor description is provided
-        # for now just get the title
+        # TODO
         else:
             pass
 
-        # set the source
-        source = article._source_to_audit if article._source_to_audit else self.str_unkown_source
-
         # pause is to create stop in between news
         # token is to eliminate the chance of stops in between sentences
-        text += Audio.gTTS_break_token + self.str_article_skip + Audio.gTTS_break_token + source + f"{Audio.gTTS_pause}" * 2
+        text += Audio.gTTS_break_token + self.str_article_skip + Audio.gTTS_break_token + f"{Audio.gTTS_pause}" * 2
         return text
 
     def create_audio(self):
@@ -92,9 +92,19 @@ class Audio:
             return
 
         text_articles = self.str_date_today + Audio.gTTS_pause + self.str_intro
+        transcript = ""
 
         for id, article in enumerate(self._articles):
+
             text_article = self._article_to_text(article)
+            transcript += text_article
+
+            source_audit = self._get_source_to_audit(article)
+
+
+            # add sources
+            text_article += source_audit
+            transcript += article.URL
 
             if len(text_article) != 0:
                 text_articles += Audio.gTTS_pause + text_article
@@ -107,9 +117,10 @@ class Audio:
                 else:
                     text_articles += Audio.gTTS_pause + self.str_news_end
 
+        self._transcript = transcript
+
         tts.text = text_articles
         tts.save(self.OUTPUT_NAME)
 
-    @staticmethod
-    def audit_text(self,text):
-        pass
+    def get_transcript(self):
+        return self._transcript
