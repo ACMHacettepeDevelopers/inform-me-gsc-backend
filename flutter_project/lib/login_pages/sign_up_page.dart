@@ -4,7 +4,7 @@ import 'package:csc_picker/model/select_status_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:csc_picker/csc_picker.dart';
-import 'package:loginpage/google_service.dart';
+import 'package:loginpage/firebase/google_service.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

@@ -2,7 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:loginpage/google_service.dart';
+import 'package:loginpage/firebase/google_service.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
