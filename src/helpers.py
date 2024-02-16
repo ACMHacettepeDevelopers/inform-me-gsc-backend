@@ -1,7 +1,7 @@
 from article import Article
 from src.scraper import Scraper
 from translate import Translator
-from news_api_client import BingNewsClient
+
 
 def get_articles_from_res(res: dict):
     """Returns list of article objects using the given response"""
@@ -15,8 +15,10 @@ def get_articles_from_res(res: dict):
 
     return articles
 
+
 def _get_available_languages():
     return Scraper.AVAILABLE_LANGUAGES
+
 
 def get_sites(country, category):
     # TODO
@@ -30,10 +32,22 @@ def get_sites(country, category):
 
     pass
 
+
 def get_lang_code_from_mkt(mkt_code):
     # Extracting the language code
     lang_code = mkt_code.split('-')[0]
     return lang_code
+
+
+def get_available_mkts():
+    """From BingNewsClient"""
+
+    return ["es-AR", "en-AU", "de-AT", "nl-BE", "fr-BE", "pt-BR", "en-CA", "fr-CA", "es-CL", "da-DK", "fi-FI", "fr-FR",
+            "de-DE", "zh-HK", "en-IN", "en-ID", "it-IT", "ja-JP", "ko-KR", "en-MY", "es-MX", "nl-NL", "en-NZ"
+                                                                                                      "zh-CN", "pl-PL",
+            "en-PH", "ru-RU", "en-ZA", "es-ES", "sv-SE", "fr-CH", "de-CH", "zh-TW", "tr-TR", "en-GB",
+            "en-US", "es-US"]
+
 
 def get_lang_code_from_country_code(country_code):
     """Returns language of the country_code (declared in the bing API mkt
@@ -42,14 +56,15 @@ def get_lang_code_from_country_code(country_code):
     country_code uppercase code of the country"""
 
     lang_code = None
-    mkts = BingNewsClient.MKTS
+    mkts = get_available_mkts()
 
     for mkt_code in mkts:
         country_code_parsed = mkt_code.split("-")[1]
         if country_code_parsed == country_code:
-            lang_code= mkt_code.split("-")[0]
+            lang_code = mkt_code.split("-")[0]
 
     return lang_code
+
 
 def get_category_translation(country_code, category_to_translate):
     """Returns category in the language of country (declared in the bing API mkt)
@@ -60,7 +75,7 @@ def get_category_translation(country_code, category_to_translate):
     lang_to_translate_to = get_lang_code_from_country_code(country_code)
 
     if lang_to_translate_to:
-        translator = Translator(to_lang= lang_to_translate_to)
+        translator = Translator(to_lang=lang_to_translate_to)
         return translator.translate(category_to_translate)
 
     # TODO throw exception
