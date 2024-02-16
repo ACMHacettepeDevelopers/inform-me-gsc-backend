@@ -1,5 +1,3 @@
-from io import BytesIO
-
 from flask import Flask, send_file
 from flask import request
 
@@ -9,8 +7,11 @@ app = Flask(__name__)
 
 podcast_generator = PodcastGenerator()
 
-@app.route('/get_podcast')
-def get_podcast_route():
+
+@app.route('/create_podcast')
+def create_podcast_route():
+    # caching mechanism
+    # TODO
 
     # Get the user's country from the request
     country = request.args.get('country')
@@ -20,33 +21,39 @@ def get_podcast_route():
 
     count = request.args.get("count")
 
-    file_name = request.args.get("file_name")
+    podcast_file_path = request.args.get("podcast_file_name")
 
-    podcast_generator.create_podcast(country,query,count,file_name)
+    podcast_generator.create_podcast(country, query, count, podcast_file_path)
 
+    return send_file(podcast_file_path, mimetype='audio/mpeg')
 
-    # Return the MP3 data as a response
-    # return send_file(BytesIO(f"{file_name}.mp3"), mimetype='audio/mpeg')
 
 @app.route('/get_transcript')
 def get_transcript_route():
-
     podcast_file_name = request.args.get("podcast_file_name")
 
     transcript = podcast_generator.get_transcript(podcast_file_name)
 
+    return transcript
 
-@app.route('/get_audio')
-def get_audio_route():
+
+@app.route('/create_audio')
+def create_audio_route():
     """Sends the audited version of the given parameter text"""
     # TODO
     pass
 
-@app.route('/get_category')
-def get_category_route():
-    """Sends the translated version of the given category """
-    # TODO
-    pass
+
+@app.route('/translate_category')
+def translate_category_route():
+    """Sends the translated version of the given category in the language of the country
+     specified by Bing api"""
+
+    category_to_translate = request.args.get("category_to_translate")
+    translation_country_code = request.args.get("translation_country_code")
+
+    return helpers.get_category_translation(translation_country_code, category_to_translate)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

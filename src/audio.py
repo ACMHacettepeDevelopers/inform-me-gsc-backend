@@ -53,7 +53,7 @@ class Audio:
     def from_mkt_code(cls, articles: list, mkt_code: str, intro: str, output_file_name: str):
         """create Audio object from ISO 3661 country_code"""
 
-        language_code = helpers._get_lang_code_from_mkt(mkt_code)
+        language_code = helpers.get_lang_code_from_mkt(mkt_code)
         return cls(articles, language_code, intro, output_file_name)
 
     def _get_source_to_audit(self, article):

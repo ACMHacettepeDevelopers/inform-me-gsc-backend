@@ -27,7 +27,7 @@ class BingNewsClient:
         count is in range [10,100]"""
 
         if get_default_sites:
-            query += helpers._get_sites(mkt, query)
+            query += helpers.get_sites(mkt, query)
 
         # make request
         # TODO FRESHNESS?
@@ -39,7 +39,7 @@ class BingNewsClient:
             response = requests.get(search_url, headers=headers, params=params)
             response.raise_for_status()
             results = response.json()
-            return helpers._get_articles_from_res(results)
+            return helpers.get_articles_from_res(results)
 
         # TODO
         except requests.exceptions.HTTPError as err:

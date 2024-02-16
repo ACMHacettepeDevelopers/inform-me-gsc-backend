@@ -23,9 +23,9 @@ class PodcastGenerator:
         count : Amount of news to be retrieved
         podcast_file_name : mp3 file to save the podcast in"""
 
-        lang = ""
-        mkt = ""
-        country_name_to_audit = ""
+        lang = "" # TODO
+        mkt = "" # TODO
+        country_name_to_audit = "" # TODO
 
         # fetch articles
         articles = self.news_client.fetch_news_query(query=q, mkt=mkt, lang=lang, count=count)
