@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart'; 
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'categories.dart';
+
 class Home extends StatelessWidget {
   Home({super.key});
 
@@ -145,23 +147,25 @@ class _HomePageState extends State<HomePage> {
 class Page1 extends StatelessWidget { 
   const Page1({Key? key}) : super(key: key); 
   
-  @override 
-  Widget build(BuildContext context) { 
-    return Container( 
-      color: Color.fromARGB(255, 246, 243, 217), 
-      child: const Center( 
-        child: Text( 
-          "Home Page", 
-          style: TextStyle( 
-            color:Color.fromARGB(255, 228, 83, 10), 
-            fontSize: 45, 
-            fontWeight: FontWeight.w500, 
-          ), 
-        ), 
-      ), 
-    ); 
-  } 
-} 
+ @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          SizedBox(
+            height: 200, // Adjust the height as needed
+            child: Tabbar(), // Include the Tabbar widget here
+          ),
+          Expanded(
+            child: Container(
+              color: Color.fromARGB(255, 246, 243, 217),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
   
 class Page2 extends StatelessWidget { 
   const Page2({Key? key}) : super(key: key); 
