@@ -37,7 +37,7 @@ class PodcastGenerator:
         # Scraper.load_summaries(articles, lang, debug=debug_mode)
 
         # create podcast
-        self.audio = Audio(articles=articles, query=q, lang=lang, country_name=country_name_to_audit,
+        self.audio = Audio(articles=articles, query=q, lang=lang, country_code=country_name_to_audit,
                            output_name=podcast_file_name, debug_mode=debug_mode)
         self.audio.create_audio()
 

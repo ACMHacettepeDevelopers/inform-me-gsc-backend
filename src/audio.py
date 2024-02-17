@@ -13,7 +13,7 @@ class Audio:
     # add to appropriate places to eliminate the chance of stop in between sentences
     gTTS_break_token = ". "
 
-    def __init__(self, articles: list, query, country_name, lang, output_name, debug_mode=False):
+    def __init__(self, articles: list, query, country_code, lang, output_name, debug_mode=False):
 
         """create audio object from ISO 361-1 lang code"""
 
@@ -28,6 +28,8 @@ class Audio:
         self.str_news_end = "These were the news."
         self.str_unkown_source = "Sorry, no source were found."
         self.str_news_end = "We've come to the end, thank you for listening."
+
+        country_name = helpers.get_country_name(country_code=country_code)
 
         self.str_intro = f"Latest news in {country_name} about {query}"
 

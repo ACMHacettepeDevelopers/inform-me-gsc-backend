@@ -1,3 +1,5 @@
+import iso3166 as iso3166
+
 from article import Article
 from translation import MyTranslator
 
@@ -76,3 +78,7 @@ def get_category_translation(country_code, category_to_translate, debug_mode=Fal
     # TODO throw exception
     else:
         return f"Translation of {country_code} is not suppported"
+
+def get_country_name(country_code: str):
+    return iso3166.countries[country_code].name
+
