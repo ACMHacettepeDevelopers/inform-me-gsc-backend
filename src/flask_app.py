@@ -1,7 +1,7 @@
 from flask import Flask, send_file
 from flask import request
 
-from app import PodcastGenerator
+from podcast import PodcastGenerator
 import helpers
 
 app = Flask(__name__)
