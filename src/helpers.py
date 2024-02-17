@@ -1,6 +1,6 @@
 from article import Article
 from scraper import Scraper
-from translate import Translator
+from translation import MyTranslator
 
 
 def get_articles_from_res(res: dict):
@@ -66,7 +66,7 @@ def get_lang_code_from_country_code(country_code):
     return lang_code
 
 
-def get_category_translation(country_code, category_to_translate):
+def get_category_translation(country_code, category_to_translate, debug_mode=False):
     """Returns category in the language of country (declared in the bing API mkt)
     Params:
     category_to_translate should be English
@@ -75,7 +75,7 @@ def get_category_translation(country_code, category_to_translate):
     lang_to_translate_to = get_lang_code_from_country_code(country_code)
 
     if lang_to_translate_to:
-        translator = Translator(to_lang=lang_to_translate_to)
+        translator = MyTranslator(to_lang=lang_to_translate_to, debug=debug_mode)
         return translator.translate(category_to_translate)
 
     # TODO throw exception

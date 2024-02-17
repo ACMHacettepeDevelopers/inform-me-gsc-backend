@@ -1,7 +1,7 @@
 from datetime import date
 from article import Article
 from gtts import gTTS
-from translate import Translator
+from translation import MyTranslator
 import helpers
 
 
@@ -13,7 +13,7 @@ class Audio:
     # add to appropriate places to eliminate the chance of stop in between sentences
     gTTS_break_token = ". "
 
-    def __init__(self, articles: list, query,country_name,lang,output_name):
+    def __init__(self, articles: list, query,country_name,lang,output_name,debug_mode = False):
 
         """create audio object from ISO 361-1 lang code"""
 
@@ -37,7 +37,7 @@ class Audio:
 
         # if lang is not english, need to translate these
         if lang != "en":
-            self._translator = Translator(to_lang=lang)
+            self._translator = MyTranslator(to_lang=lang,debug=debug_mode)
             self.str_article_skip = self._translator.translate(self.str_article_skip)
             self.str_new_article = self._translator.translate(self.str_new_article)
             self.str_not_found = self._translator.translate(self.str_not_found)
