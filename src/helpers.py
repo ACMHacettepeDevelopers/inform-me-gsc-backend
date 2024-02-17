@@ -1,5 +1,4 @@
 from article import Article
-from scraper import Scraper
 from translation import MyTranslator
 
 
