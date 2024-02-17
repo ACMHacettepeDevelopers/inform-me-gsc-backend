@@ -24,7 +24,11 @@ def create_podcast_route():
 
     podcast_file_path = request.args.get("podcast_file_name")
 
-    podcast_generator.create_podcast(country, query, count, podcast_file_path)
+    mode = request.args.get("mode")
+
+    debug = (mode == "debug")
+
+    podcast_generator.create_podcast(country, query, count, podcast_file_path,debug_mode=debug)
 
     return send_file(podcast_file_path, mimetype='audio/mpeg')
 
@@ -53,7 +57,11 @@ def translate_category_route():
     category_to_translate = request.args.get("category_to_translate")
     translation_country_code = request.args.get("translation_country_code")
 
-    return helpers.get_category_translation(translation_country_code, category_to_translate)
+    mode = request.args.get("mode")
+
+    debug = (mode == "debug")
+
+    return helpers.get_category_translation(translation_country_code, category_to_translate,debug_mode=debug)
 
 
 if __name__ == '__main__':
