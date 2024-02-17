@@ -13,7 +13,7 @@ class Audio:
     # add to appropriate places to eliminate the chance of stop in between sentences
     gTTS_break_token = ". "
 
-    def __init__(self, articles: list, query,country_name,lang,output_name,debug_mode = False):
+    def __init__(self, articles: list, query, country_name, lang, output_name, debug_mode=False):
 
         """create audio object from ISO 361-1 lang code"""
 
@@ -37,7 +37,7 @@ class Audio:
 
         # if lang is not english, need to translate these
         if lang != "en":
-            self._translator = MyTranslator(to_lang=lang,debug=debug_mode)
+            self._translator = MyTranslator(to_lang=lang, debug=debug_mode)
             self.str_article_skip = self._translator.translate(self.str_article_skip)
             self.str_new_article = self._translator.translate(self.str_new_article)
             self.str_not_found = self._translator.translate(self.str_not_found)
@@ -46,13 +46,12 @@ class Audio:
             self.str_unkown_source = self._translator.translate(self.str_unkown_source)
             self.str_news_end = self._translator.translate(self.str_news_end)
 
-
-    @classmethod
-    def from_mkt_code(cls, articles: list, mkt_code: str, intro: str, output_file_name: str):
-        """create Audio object from ISO 3661 country_code"""
-
-        language_code = helpers.get_lang_code_from_mkt(mkt_code)
-        return cls(articles, language_code, intro, output_file_name)
+    #@classmethod
+    #def from_mkt_code(cls, articles: list, mkt_code: str, intro: str, output_file_name: str, debug_mode):
+    #    """create Audio object from ISO 3661 country_code"""
+#
+    #    language_code = helpers.get_lang_code_from_mkt(mkt_code)
+    #    return cls(articles, language_code, intro, output_file_name, debug_mode=debug_mode)
 
     def _get_source_to_audit(self, article):
         # return the source to audit
@@ -98,7 +97,6 @@ class Audio:
             transcript += text_article
 
             source_audit = self._get_source_to_audit(article)
-
 
             # add sources
             text_article += source_audit

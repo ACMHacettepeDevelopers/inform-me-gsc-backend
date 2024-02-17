@@ -15,10 +15,6 @@ def get_articles_from_res(res: dict):
     return articles
 
 
-def _get_available_languages():
-    return Scraper.AVAILABLE_LANGUAGES
-
-
 def get_sites(country, category):
     # TODO
     """Returns site parameter for the request in BingNewsClient"""

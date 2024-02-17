@@ -38,7 +38,7 @@ class PodcastGenerator:
 
         # create podcast
         self.audio = Audio(articles=articles, query=q, lang=lang, country_name=country_name_to_audit,
-                           output_name=podcast_file_name,debug_mode = debug_mode)
+                           output_name=podcast_file_name, debug_mode=debug_mode)
         self.audio.create_audio()
 
         # save transcript
