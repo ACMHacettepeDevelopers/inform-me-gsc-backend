@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="26c73bea-003d-44a8-be26-fb9c44ade46b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/flask_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/flask_app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test_flask_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_flask_app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +50,7 @@
       <recent name="C:\Users\ecese\PycharmProjects\sideprojects\inform_me_gsc\flutter_project" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.google_clients">
+  <component name="RunManager" selected="Python.test_flask_app">
     <configuration name="flask_app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="inform_me_gsc" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -116,8 +117,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test_flask_app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="inform_me_gsc" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/test_flask_app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_flask_app" />
         <item itemvalue="Python.google_clients" />
         <item itemvalue="Python.flask_app" />
         <item itemvalue="Python.main" />
@@ -145,7 +169,7 @@
       <workItem from="1708068272215" duration="345000" />
       <workItem from="1708087216291" duration="2817000" />
       <workItem from="1708109715999" duration="1775000" />
-      <workItem from="1708167930750" duration="7496000" />
+      <workItem from="1708167930750" duration="8499000" />
     </task>
     <servers />
   </component>
@@ -153,6 +177,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/inform_me_gsc$test_flask_app.coverage" NAME="test_flask_app Coverage Results" MODIFIED="1708192559511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/inform_me_gsc$.coverage" NAME=" Coverage Results" MODIFIED="1708116356011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/inform_me_gsc$flask_app.coverage" NAME="flask_app Coverage Results" MODIFIED="1708112411556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/inform_me_gsc$main.coverage" NAME="main Coverage Results" MODIFIED="1707949358690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />

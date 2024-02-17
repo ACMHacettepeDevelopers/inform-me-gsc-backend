@@ -1,6 +1,7 @@
 import os
 
 from flask_app import app
+from podcast import PodcastGenerator
 import json
 
 from pydub import AudioSegment
@@ -33,7 +34,7 @@ def test_create_podcast():
         # Make a request to the route
         response = client.get('/create_podcast', query_string={
             'country': 'US',
-            'query': 'example',
+            'query': 'sports',
             'count': '10',
             'podcast_file_name': 'test.mp3',
             'mode':'debug'
@@ -46,6 +47,10 @@ def test_create_podcast():
         with open('test.mp3', 'wb') as f:
             f.write(response.data)
 
+        # Check the content length header
+        content_length = int(response.headers['Content-Length'])
+        print(f"in the application the content_length is {content_length}")
+
         # Load the MP3 file and play it (assuming you have a player installed)
         audio = AudioSegment.from_file('test.mp3', format='mp3')
         audio.export('test.wav', format='wav')
@@ -55,3 +60,22 @@ def test_create_podcast():
         ##os.remove('test.mp3')
         ##os.remove('test.wav')
 
+def test_podcast_manually():
+    pg = PodcastGenerator()
+    # Get the user's country from the request
+    country = "US"
+
+    # Get the category from the request
+    query = "sports"
+
+    count = 10
+
+    podcast_file_path = "test.mp3"
+
+    mode = "debug"
+
+    debug = (mode == "debug")
+
+    pg.create_podcast(country, query, count, podcast_file_path,debug_mode=debug)
+
+test_podcast_manually()
