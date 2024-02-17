@@ -31,10 +31,6 @@ def create_podcast_route():
 
     podcast_generator.create_podcast(country, query, count, podcast_file_path,debug_mode=debug)
 
-    length = os.path.getsize(podcast_file_path)
-
-    print(f"in the server the content length is {length}")
-
     return send_file(podcast_file_path, mimetype='audio/mpeg')
 
 
