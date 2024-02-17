@@ -32,10 +32,11 @@ def test_create_podcast():
     with app.test_client() as client:
         # Make a request to the route
         response = client.get('/create_podcast', query_string={
-            'country': 'USA',
+            'country': 'US',
             'query': 'example',
-            'count': '1',
-            'podcast_file_name': 'test.mp3'
+            'count': '10',
+            'podcast_file_name': 'test.mp3',
+            'mode':'debug'
         })
 
         # Check the response status code
