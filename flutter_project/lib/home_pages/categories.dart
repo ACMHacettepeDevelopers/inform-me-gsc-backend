@@ -15,7 +15,7 @@ class _TabbarState extends State<Tabbar> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("tabbar"),
-          backgroundColor: Color.fromRGBO(158, 40, 40, 1),
+          backgroundColor: Color.fromRGBO(237, 230, 230, 1),
           bottom: const TabBar(
             tabs: [
               Tab(

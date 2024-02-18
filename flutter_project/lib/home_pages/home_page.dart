@@ -21,17 +21,20 @@ class Home extends StatelessWidget {
         hoverColor: Colors.transparent,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const HomePage(selectedCountry: ''),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final String selectedCountry;
+
+  const HomePage({Key? key, this.selectedCountry = ''}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
+
 
 class _HomePageState extends State<HomePage> {
   int pageIndex = 0;
@@ -202,7 +205,7 @@ class Page2 extends StatelessWidget {
                   children: [
                     Center(
                       child: Text(
-                        "Logged in as\n ${currentUser.email} and country is ${userData['country']}",
+                        "Logged in as\n ${currentUser.email} \ncountry is ${userData['country']}",
                         style: TextStyle(
                           color: Color.fromARGB(255, 228, 83, 10),
                           fontSize: 20,
