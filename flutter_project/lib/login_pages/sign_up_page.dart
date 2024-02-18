@@ -41,7 +41,7 @@ void showRegistrationSuccessDialog(BuildContext context) {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  String selectedCountry = "abc";
+  String selectedCountry = "";
   String address = "";
   final usernameController = TextEditingController();
   final eMailController = TextEditingController();
@@ -213,17 +213,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                // Add CSCPicker here
-                Padding(
-                  padding: EdgeInsets.fromLTRB(50, 3, 50, 5),
-                  child: CSCPicker(
-                    flagState: CountryFlag.ENABLE,
-                    onCountryChanged: (country) {},
-                    showStates: false,
-                    showCities: false,
-                    dropdownDialogRadius: 15,
-                  ),
-                ),
+                
+
+
 
                 Container(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
