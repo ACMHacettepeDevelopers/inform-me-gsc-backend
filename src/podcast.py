@@ -29,15 +29,13 @@ class PodcastGenerator:
 
         mkt = f"{lang}-{country_code}"
 
-        country_name_to_audit = country_code  # TODO you can use package iso3166 for conversion
-
         # fetch articles
         articles = self.news_client.fetch_news_query(query=q, mkt=mkt, lang=lang, count=count)
 
         # Scraper.load_summaries(articles, lang, debug=debug_mode)
 
         # create podcast
-        self.audio = Audio(articles=articles, query=q, lang=lang, country_code=country_name_to_audit,
+        self.audio = Audio(articles=articles, query=q, lang=lang, country_code=country_code,
                            output_name=podcast_file_name, debug_mode=debug_mode)
         self.audio.create_audio()
 
@@ -51,3 +49,7 @@ class PodcastGenerator:
 
         else:
             return f"Something is wrong with {podcast_file_name}, transcript is not found"
+
+
+    def get_tts_text(self):
+        return self.audio.get_script()

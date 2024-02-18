@@ -21,7 +21,6 @@ class Audio:
         self._lang = lang
 
         self.str_date_today = date.today().strftime('%B %d, %Y')  # Format the date as a readable string
-
         self.str_article_skip = 'Details are at '
         self.str_new_article = "Now we are heading to the next news."
         self.str_not_found = "Sorry, no news or articles were found."
@@ -32,7 +31,6 @@ class Audio:
         country_name = helpers.get_country_name(country_code=country_code)
 
         self.str_intro = f"Latest news in {country_name} about {query}"
-
         self.OUTPUT_NAME = output_name
 
         self._transcript = ""
@@ -48,10 +46,12 @@ class Audio:
             self.str_unkown_source = self._translator.translate(self.str_unkown_source)
             self.str_news_end = self._translator.translate(self.str_news_end)
 
-    #@classmethod
-    #def from_mkt_code(cls, articles: list, mkt_code: str, intro: str, output_file_name: str, debug_mode):
+        self._article_text = ""
+
+    # @classmethod
+    # def from_mkt_code(cls, articles: list, mkt_code: str, intro: str, output_file_name: str, debug_mode):
     #    """create Audio object from ISO 3661 country_code"""
-#
+    #
     #    language_code = helpers.get_lang_code_from_mkt(mkt_code)
     #    return cls(articles, language_code, intro, output_file_name, debug_mode=debug_mode)
 
@@ -62,12 +62,10 @@ class Audio:
     def _article_to_text(self, article: Article) -> str:
         """return text of article to audit, return empty text if both description and content is none"""
 
-        text = ""
-        title = article.TITLE
+        text = article.TITLE
 
         # add title to text
-        text += title + f"{Audio.gTTS_pause}"
-
+        # text += title + f"{Audio.gTTS_pause}"
         if article.DESCRIPTION is not None:
             text += article.DESCRIPTION
 
@@ -77,7 +75,7 @@ class Audio:
 
         # pause is to create stop in between news
         # token is to eliminate the chance of stops in between sentences
-        text += Audio.gTTS_break_token + self.str_article_skip + Audio.gTTS_break_token + f"{Audio.gTTS_pause}" * 2
+        # text += Audio.gTTS_break_token + self.str_article_skip + Audio.gTTS_break_token + f"{Audio.gTTS_pause}" * 2
         return text
 
     def create_audio(self):
@@ -98,7 +96,7 @@ class Audio:
             text_article = self._article_to_text(article)
             transcript += text_article
 
-            source_audit = self._get_source_to_audit(article)
+            source_audit = f"Details are at {self._get_source_to_audit(article)}"
 
             # add sources
             text_article += source_audit
@@ -109,16 +107,23 @@ class Audio:
 
                 # if upcoming article exists, add string_new_article text
                 if id != len(self._articles) - 1:
-                    text_articles += self.str_new_article + Audio.gTTS_pause + Audio.gTTS_break_token
+                    # text_articles += self.str_new_article + Audio.gTTS_pause + Audio.gTTS_break_token
+                    text_articles += self.str_new_article
 
                 # add ending text
                 else:
-                    text_articles += Audio.gTTS_pause + self.str_news_end
+                    # text_articles += Audio.gTTS_pause + self.str_news_end
+                    text_articles += self.str_news_end
 
         self._transcript = transcript
 
-        tts.text = text_articles
-        tts.save(self.OUTPUT_NAME)
+        self._article_text = text_articles
+
+        # tts.text = text_articles
+        # tts.save(self.OUTPUT_NAME)
+
+    def get_script(self):
+        return self._article_text
 
     def get_transcript(self):
         return self._transcript
