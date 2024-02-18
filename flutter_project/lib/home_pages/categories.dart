@@ -13,27 +13,41 @@ class _TabbarState extends State<Tabbar> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("tabbar"),
-          backgroundColor: Color.fromRGBO(237, 230, 230, 1),
-          bottom: const TabBar(
-            tabs: [
-              Tab(
-                text: "Tech",
-              ),
-              Tab(
-                text: "Politics",
-              ),
-              Tab(
-                text: "Economy",
-              ),
-              Tab(
-                text: "Sports",
-              )
-            ],
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight + 56),
+          child: SafeArea(
+            child: Column(
+              children: [
+                TabBar(
+                  tabs: [
+                    Tab(
+                      text: "Tech",
+                    ),
+                    Tab(
+                      text: "Politics",
+                    ),
+                    Tab(
+                      text: "Economy",
+                    ),
+                    Tab(
+                      text: "Sports",
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Search',
+                      prefixIcon: Icon(Icons.search),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
             Center(
               child: Text("Tech"),
