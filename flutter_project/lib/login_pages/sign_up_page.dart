@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csc_picker/model/select_status_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -49,20 +50,28 @@ class _SignUpPageState extends State<SignUpPage> {
   final countryController = TextEditingController();
 
   void signUpFunct() async {
-    if (passwordController.text == passwordConfirmController.text) {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    if (passwordController.text == passwordConfirmController.text &&
+        usernameController.text.isNotEmpty) {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: eMailController.text,
         password: passwordController.text,
       );
-      FireStoreAuthService().registerUser(
-        username: usernameController.text,
-        email: eMailController.text,
-        country: selectedCountry,
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user!.email)
+          .set(
+        {
+          'username': usernameController.text,
+          'email': eMailController.text,
+          'country': selectedCountry,
+        },
       );
+
       // pop up ekle
       showRegistrationSuccessDialog(context);
     } else {
-      errorMessage('Passwords are\'nt same');
+      errorMessage('There is an error');
     }
   }
 
