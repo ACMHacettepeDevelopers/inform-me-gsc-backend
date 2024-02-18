@@ -50,12 +50,13 @@ def create_audio_route():
     pass
 
 
-@app.route('/translate_category')
-def translate_category_route():
-    """Sends the translated version of the given category in the language of the country
+@app.route('/translate_categories')
+def translate_categories_route():
+    """Sends the translated version of the given categories in the language of the country
      specified by Bing api"""
+    """Categories should have spaces in between"""
 
-    category_to_translate = request.args.get("category_to_translate")
+    category_to_translate = request.args.get("categories_to_translate")
     translation_country_code = request.args.get("translation_country_code")
 
     mode = request.args.get("mode")
