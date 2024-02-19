@@ -16,6 +16,9 @@ COPY src/ .
 # Set the FLASK_APP environment variable
 ENV FLASK_APP=flask_app.py
 
+# Set the environment variable SERVICE_ACCOUNT_JSON
+ENV SERVICE_ACCOUNT_JSON=""
+
 # Expose the Flask port
 EXPOSE 5000
 
