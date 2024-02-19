@@ -1,7 +1,9 @@
 from google.cloud import translate_v2 as google_translate
 from translate import Translator
-from flask_app import service_account_json
 
+import os
+# Get the service account JSON from the environment variable
+service_account_json = os.getenv('SERVICE_ACCOUNT_JSON')
 class MyTranslator:
 
     def __init__(self, to_lang, debug=False):

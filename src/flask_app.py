@@ -1,7 +1,6 @@
 from flask import Flask, send_file, jsonify
 from flask import request
 
-import os
 from podcast import PodcastGenerator
 import helpers
 
@@ -9,16 +8,13 @@ app = Flask(__name__)
 
 podcast_generator = PodcastGenerator()
 
-# Get the service account JSON from the environment variable
-service_account_json = os.getenv('SERVICE_ACCOUNT_JSON')
-
 
 @app.route('/create_podcast')
 def create_podcast_route():
     # caching mechanism
-    #TODO
+    # TODO
 
-    # Get the user's country from the request
+    # Get the user's country from the request, it is ALPHA2 code of the country
     country = request.args.get('country')
 
     # Get the category from the request
@@ -32,7 +28,7 @@ def create_podcast_route():
 
     debug = (mode == "debug")
 
-    podcast_generator.create_podcast(country, query, count, podcast_file_path,debug_mode=debug)
+    podcast_generator.create_podcast(country, query, count, podcast_file_path, debug_mode=debug)
 
     return send_file(podcast_file_path, mimetype='audio/mpeg')
 
@@ -66,7 +62,7 @@ def translate_categories_route():
 
     debug = (mode == "debug")
 
-    translations = helpers.get_category_translation(translation_country_code, category_to_translate,debug_mode=debug)
+    translations = helpers.get_category_translations(translation_country_code, category_to_translate, debug_mode=debug)
     # Return a JSON object with the translations
     return jsonify({"translations": translations})
 

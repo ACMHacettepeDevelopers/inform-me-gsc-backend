@@ -1,14 +1,14 @@
-"""Synthesizes speech from the input string of text or ssml.
-Make sure to be working in a virtual environment.
-
-Note: ssml must be well-formed according to:
+"""Note: ssml must be well-formed according to:
     https://www.w3.org/TR/speech-synthesis/
 """
 from google.cloud import texttospeech
-from flask_app import service_account_json
+import os
+
+# Get the service account JSON from the environment variable
+service_account_json = os.getenv('SERVICE_ACCOUNT_JSON')
+
 
 def create_audio(text):
-
     # Instantiates a client
     client = texttospeech.TextToSpeechClient.from_service_account_json(service_account_json)
 

@@ -49,7 +49,7 @@ def get_available_mkts():
 def get_lang_code_from_country_code(country_code):
     """Returns language of the country_code (declared in the bing API mkt
     returns none if the country_code is not supported
-    Paraös:
+    Params:
     country_code uppercase code of the country"""
 
     lang_code = None
@@ -63,22 +63,28 @@ def get_lang_code_from_country_code(country_code):
     return lang_code
 
 
-def get_category_translation(country_code, category_to_translate, debug_mode=False):
+def get_category_translations(country_code, categories_to_translate, debug_mode=False):
     """Returns category in the language of country (declared in the bing API mkt)
     Params:
-    category_to_translate should be English
-    country code should be uppercase code"""
+    categories to translate must have "," between them. I.e ("tech,sports,.."
+    country code should be uppercase code
+
+    Returns: list of string containing translated categories """
 
     lang_to_translate_to = get_lang_code_from_country_code(country_code)
 
     if lang_to_translate_to:
         translator = MyTranslator(to_lang=lang_to_translate_to, debug=debug_mode)
-        return translator.translate(category_to_translate)
+        translated_categories = list()
+        for category in categories_to_translate.split(","):
+            translated_categories.append(translator.translate(category))
+
+        return translated_categories
 
     # TODO throw exception
     else:
         return f"Translation of {country_code} is not suppported"
 
+
 def get_country_name(country_code: str):
     return iso3166.countries[country_code].name
-
