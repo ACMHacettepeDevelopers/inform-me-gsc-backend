@@ -1,14 +1,15 @@
-from config import *
 from news_api_client import *
 from audio import *
+import os
 
+BING_API_KEY = os.getenv("BING_API_KEY")
 
 class PodcastGenerator:
     # TODO
     AVAILABLE_COUNTRIES = dict()
 
-    def __init__(self):
-        self.news_client = BingNewsClient(BING_NEWS_API_KEY)
+    def __init__(self,):
+        self.news_client = BingNewsClient(BING_API_KEY)
         self.audio = None
 
         # hols the transcripts

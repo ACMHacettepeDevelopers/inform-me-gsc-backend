@@ -104,5 +104,5 @@ ENV/
 /migrate_working_dir/
 
 # Custom
-config.py
 service.json
+Dockerfile

@@ -1,5 +1,3 @@
-import iso3166 as iso3166
-
 from article import Article
 from translation import MyTranslator
 
@@ -20,13 +18,6 @@ def get_articles_from_res(res: dict):
 def get_sites(country, category):
     # TODO
     """Returns site parameter for the request in BingNewsClient"""
-    if country == "TR":
-        match category:
-            case "Ekonomi":
-                pass
-            case "Politika":
-                pass
-
     pass
 
 
@@ -89,4 +80,4 @@ def get_category_translations(country_code, categories_to_translate, debug_mode=
 
 
 def get_country_name(country_code: str):
-    return iso3166.countries[country_code].name
+    return country_code
