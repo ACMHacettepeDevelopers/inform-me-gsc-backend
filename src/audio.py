@@ -119,8 +119,8 @@ class Audio:
 
         self._article_text = text_articles
 
-        # tts.text = text_articles
-        # tts.save(self.OUTPUT_NAME)
+        tts.text = text_articles
+        tts.save(self.OUTPUT_NAME)
 
     def get_script(self):
         return self._article_text
