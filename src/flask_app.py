@@ -41,14 +41,6 @@ def get_transcript_route():
 
     return transcript
 
-
-@app.route('/create_audio')
-def create_audio_route():
-    """Sends the audited version of the given parameter text"""
-    # TODO
-    pass
-
-
 @app.route('/translate_categories')
 def translate_categories_route():
     """Sends the translated version of the given categories in the language of the country
