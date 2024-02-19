@@ -1,9 +1,8 @@
-from flask import Flask, send_file
+from flask import Flask, send_file, jsonify
 from flask import request
 
 from podcast import PodcastGenerator
 import helpers
-import os
 
 app = Flask(__name__)
 
@@ -63,7 +62,9 @@ def translate_categories_route():
 
     debug = (mode == "debug")
 
-    return helpers.get_category_translation(translation_country_code, category_to_translate,debug_mode=debug)
+    translations = helpers.get_category_translation(translation_country_code, category_to_translate,debug_mode=debug)
+    # Return a JSON object with the translations
+    return jsonify({"translations": translations})
 
 
 if __name__ == '__main__':
