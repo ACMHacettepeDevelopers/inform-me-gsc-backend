@@ -1,5 +1,6 @@
 from google.cloud import translate_v2 as google_translate
 from translate import Translator
+from flask_app import service_account_json
 
 class MyTranslator:
 
@@ -10,7 +11,7 @@ class MyTranslator:
 
         # use google package
         if not debug:
-            self._translate_client = google_translate.Client.from_service_account_json("../service.json")
+            self._translate_client = google_translate.Client.from_service_account_json(service_account_json)
 
         # use 3rd party package
         else:

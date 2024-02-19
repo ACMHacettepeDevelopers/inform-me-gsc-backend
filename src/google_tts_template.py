@@ -5,11 +5,12 @@ Note: ssml must be well-formed according to:
     https://www.w3.org/TR/speech-synthesis/
 """
 from google.cloud import texttospeech
-from podcast import PodcastGenerator
+from flask_app import service_account_json
 
 def create_audio(text):
+
     # Instantiates a client
-    client = texttospeech.TextToSpeechClient.from_service_account_json("../service.json")
+    client = texttospeech.TextToSpeechClient.from_service_account_json(service_account_json)
 
     # Set the text input to be synthesized
     synthesis_input = texttospeech.SynthesisInput(text=text)

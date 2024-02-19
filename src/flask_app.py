@@ -1,12 +1,16 @@
 from flask import Flask, send_file, jsonify
 from flask import request
 
+import os
 from podcast import PodcastGenerator
 import helpers
 
 app = Flask(__name__)
 
 podcast_generator = PodcastGenerator()
+
+# Get the service account JSON from the environment variable
+service_account_json = os.getenv('SERVICE_ACCOUNT_JSON')
 
 
 @app.route('/create_podcast')
