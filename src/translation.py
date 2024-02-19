@@ -10,7 +10,7 @@ class MyTranslator:
 
         # use google package
         if not debug:
-            self._translate_client = google_translate.Client()
+            self._translate_client = google_translate.Client.from_service_account_json("../service.json")
 
         # use 3rd party package
         else:

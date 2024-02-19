@@ -105,3 +105,4 @@ ENV/
 
 # Custom
 config.py
+service.json

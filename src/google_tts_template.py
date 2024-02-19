@@ -9,7 +9,7 @@ from podcast import PodcastGenerator
 
 def create_audio(text):
     # Instantiates a client
-    client = texttospeech.TextToSpeechClient()
+    client = texttospeech.TextToSpeechClient.from_service_account_json("../service.json")
 
     # Set the text input to be synthesized
     synthesis_input = texttospeech.SynthesisInput(text=text)
@@ -36,9 +36,3 @@ def create_audio(text):
         # Write the response to the output file.
         out.write(response.audio_content)
         print('Audio content written to file "output.mp3"')
-
-pg = PodcastGenerator()
-pg.create_podcast(country_code="US",q ="economy",count = 5,podcast_file_name="test.mp3")
-text = pg.get_tts_text()
-
-create_audio(text)
