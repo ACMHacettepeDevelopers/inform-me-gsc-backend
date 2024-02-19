@@ -69,16 +69,18 @@ def get_category_translations(country_code, categories_to_translate, debug_mode=
     categories to translate must have "," between them. I.e ("tech,sports,.."
     country code should be uppercase code
 
-    Returns: list of string containing translated categories """
+    Returns: A string seperated with, of translated categories. I.e "Tech,Sports" """
 
     lang_to_translate_to = get_lang_code_from_country_code(country_code)
 
+    # TODO change the logic after demo to return a list of string, these was a hotfix for front-end
     if lang_to_translate_to:
         translator = MyTranslator(to_lang=lang_to_translate_to, debug=debug_mode)
-        translated_categories = list()
+        translated_categories = ""
         for category in categories_to_translate.split(","):
-            translated_categories.append(translator.translate(category))
-
+            category = translator.translate(category)
+            translated_categories += category+","
+        translated_categories = translated_categories[:-1]
         return translated_categories
 
     # TODO throw exception
