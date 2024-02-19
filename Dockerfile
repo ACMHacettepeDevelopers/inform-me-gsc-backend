@@ -10,17 +10,19 @@ COPY requirements.txt requirements.txt
 # Install the dependencies
 RUN pip install -r requirements.txt
 
-# Copy the content of the local src directory to the working directory
-COPY src/ .
+# Copy the Flask application code and the service account JSON file into the image
+COPY src/ /app/src/
+COPY service-account.json /app/src/
 
 # Set the FLASK_APP environment variable
-ENV FLASK_APP=flask_app.py
+ENV FLASK_APP=src/flask_app.py
 
-# Set the environment variable SERVICE_ACCOUNT_JSON
-ENV SERVICE_ACCOUNT_JSON=""
+# Set the environment variable for the service account JSON file
+ENV GOOGLE_APPLICATION_CREDENTIALS="/app/src/service.json"
 
 # Expose the Flask port
 EXPOSE 5000
 
 # Command to run the Flask application
 CMD ["flask", "run", "--host=0.0.0.0"]
+

@@ -5,7 +5,7 @@ from google.cloud import texttospeech
 import os
 
 # Get the service account JSON from the environment variable
-service_account_json = os.getenv('SERVICE_ACCOUNT_JSON')
+service_account_json = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
 
 def create_audio(text):
