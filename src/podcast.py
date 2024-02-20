@@ -2,7 +2,6 @@ from news_api_client import *
 from audio import *
 import os
 
-# BING_API_KEY = os.getenv("BING_API_KEY")
 BING_API_KEY = "5b2e0286ad034db9b02130766e96cb02"
 
 class PodcastGenerator:

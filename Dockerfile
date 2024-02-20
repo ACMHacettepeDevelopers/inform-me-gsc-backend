@@ -1,5 +1,7 @@
-# Use the official Python image from the Docker Hub
+# Use the official Python slim image
 FROM python:3.9-slim
+
+EXPOSE 5000/tcp
 
 # Set the working directory in the container
 WORKDIR /app
@@ -23,9 +25,4 @@ ENV BING_API_KEY="5b2e0286ad034db9b02130766e96cb02"
 # Set the environment variable for the service account JSON file
 ENV GOOGLE_APPLICATION_CREDENTIALS="/app/src/service.json"
 
-# Expose the Flask port
-EXPOSE 5000
-
-# Command to run the Flask application
-CMD ["flask", "run", "--host=0.0.0.0"]
 

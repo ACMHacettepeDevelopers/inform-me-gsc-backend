@@ -1,7 +1,7 @@
 from google.cloud import translate_v2 as google_translate
 from translate import Translator
 
-#import os
+import os
 # Get the service account JSON from the environment variable
 #service_account_json = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 service_account_json = "service.json"
