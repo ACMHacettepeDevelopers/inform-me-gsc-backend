@@ -34,6 +34,7 @@ class Audio:
         self.str_unkown_source = "Sorry, no source were found."
         self.str_news_end = "We've come to the end, thank you for listening."
 
+        # TODO take as param
         country_name = helpers.get_country_name(country_code=country_code)
         self.str_intro = f"Latest news in {country_name} about {query}"
 
@@ -79,7 +80,7 @@ class Audio:
                            output_file_name=self.OUTPUT_NAME, country_code=self._country_code)
 
             if self._articles is None:
-                print("No articles could be fetched")
+                print("No articles could be fetched. Something could be wrong with news api")
                 return
 
         # reset after succesfull fetch

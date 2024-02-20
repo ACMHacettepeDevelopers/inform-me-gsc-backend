@@ -1,5 +1,4 @@
 class Article:
-
     def __init__(self, title, source, publish_date, url, description):
         self.TITLE = title
         self.SOURCE = source
