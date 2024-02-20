@@ -1,6 +1,5 @@
 from news_api_client import *
 from audio import *
-import os
 
 BING_API_KEY = "5b2e0286ad034db9b02130766e96cb02"
 
@@ -30,14 +29,26 @@ class PodcastGenerator:
 
         mkt = f"{lang}-{country_code}"
 
-        # fetch articles
-        articles = self.news_client.fetch_news_query(query=q, mkt=mkt, lang=lang, count=count)
+        articles = None
+
+        try:
+            response = self.news_client.fetch_news_query(query=q, mkt=mkt, lang=lang, count=count)
+            response.raise_for_status()
+            results = response.json()
+            articles = helpers.get_articles_from_res(results)
+
+        except requests.exceptions.HTTPError as err:
+            print(f"HTTP error occurred: {err}")
+
 
         # Scraper.load_summaries(articles, lang, debug=debug_mode)
 
         # create podcast
+        # handles none articles by auditing inital state of Audio.script
+
         self.audio = Audio(articles=articles, query=q, lang=lang, country_code=country_code,
                            output_name=podcast_file_name, debug_mode=debug_mode)
+
         self.audio.create_audio()
 
         # save transcript

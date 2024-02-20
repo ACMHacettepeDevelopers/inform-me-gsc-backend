@@ -2,12 +2,12 @@
     https://www.w3.org/TR/speech-synthesis/
 """
 from google.cloud import texttospeech
+from podcast import PodcastGenerator
 import os
 
 # Get the service account JSON from the environment variable
 #service_account_json = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 service_account_json = "service.json"
-
 
 def create_audio(text):
     # Instantiates a client
@@ -38,3 +38,10 @@ def create_audio(text):
         # Write the response to the output file.
         out.write(response.audio_content)
         print('Audio content written to file "output.mp3"')
+
+
+
+pg = PodcastGenerator()
+
+pg.create_podcast("US","economy",5,"us.mp3")
+print(pg.get_transcript("us.mp3"))

@@ -25,6 +25,7 @@ class BingNewsClient:
         get_default_sites > add hard coded sites to gurantee scraping
         sort_by > date | relevance""
         count is in range [10,100]"""
+        """Throws HTTP error if request has http error"""
 
         if get_default_sites:
             query += helpers.get_sites(mkt, query)
@@ -35,15 +36,13 @@ class BingNewsClient:
         headers = {"Ocp-Apim-Subscription-Key": self._sub_key}
         params = {"q": query, "count": count, "mkt": mkt, "setLang": lang, sort_by: "sort_by"}
 
-        try:
-            response = requests.get(search_url, headers=headers, params=params)
-            response.raise_for_status()
-            results = response.json()
-            return helpers.get_articles_from_res(results)
 
-        # TODO
-        except requests.exceptions.HTTPError as err:
-            print(f"HTTP error occurred: {err}")
+        response = requests.get(search_url, headers=headers, params=params)
+        response.raise_for_status()
+        results = response.json()
+        return results
+
+
 
     # def fetch_news_topic(self, mkt, topic):
     #    search_url = f"https://api.bing.microsoft.com/v7.0/news"
