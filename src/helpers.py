@@ -1,5 +1,6 @@
 from article import Article
 from translation import MyTranslator
+import iso3166
 
 
 def get_articles_from_res(res: dict):
@@ -80,4 +81,4 @@ def get_category_translations(country_code, categories_to_translate, debug_mode=
 
 
 def get_country_name(country_code: str):
-    return country_code
+    return iso3166.countries_by_alpha2[country_code].name

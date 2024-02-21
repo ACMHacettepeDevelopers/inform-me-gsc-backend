@@ -23,6 +23,8 @@ class Audio:
         self._transcript = f"Sorry, no articles were found with query = {query} . Forward this  to admin please"
         self._article_text = f"Sorry, no articles were found with query = {query} . Forward this  to admin please"
         self._debug_mode = debug_mode
+        country_name = helpers.get_country_name(country_code=country_code)
+        self.str_intro = f"Latest news in {country_name} about {query}"
 
 
         # STRINGS
@@ -34,9 +36,6 @@ class Audio:
         self.str_unkown_source = "Sorry, no source were found."
         self.str_news_end = "We've come to the end, thank you for listening."
 
-        # TODO take as param
-        country_name = helpers.get_country_name(country_code=country_code)
-        self.str_intro = f"Latest news in {country_name} about {query}"
 
         # if lang is not english, need to translate these
         if lang != "en":
