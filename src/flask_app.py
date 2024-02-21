@@ -58,7 +58,7 @@ def translate_categories_route():
     # Return a JSON object with the translations
     return jsonify({"translations": translations})
 
-@app.route('/upload_mp3')
+@app.route('/upload_mp3', methods=['POST'])
 def upload_mp3():
     """Uploads the mp3 file in the request to the server
     First call this route to perform STT
