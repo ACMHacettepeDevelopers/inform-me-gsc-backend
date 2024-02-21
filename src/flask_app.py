@@ -63,24 +63,24 @@ def upload_mp3():
     """Uploads the mp3 file in the request to the server
     First call this route to perform STT
     Use user id in podcast_file_name, don't put .mp3 at the end!"""
+    """takes base64 version of mp3 in the header"""
     try:
         # Get the content of the MP3 file from the request
-        mp3_content = request.headers.get('mp3')
+        mp3_base_64 = request.headers.get('mp3')
 
-        # Get the user ID (or podcast file name) from the request
+        # Get the user ID (podcast file name) from the request
         file_name = request.args.get("podcast_file_name")
 
         file_path = file_name + ".mp3"
 
-        # Write the MP3 content to the file
-        with open(file_path, 'wb') as f:
-            f.write(mp3_content)
+        # create mp3 from base 64
+        STT.create_mp3_from_base64(mp3_base_64,file_path)
 
         # Respond with a success message
         return jsonify({'message': 'MP3 file uploaded successfully'})
     except Exception as e:
         # If an error occurs, return an error message
-        return jsonify({'error': str(e)}), 500  # Return a 500 status code for internal server error
+        return jsonify({'error on creating mp3 file': str(e)}), 500  # Return a 500 status code for internal server error
 
 @app.route('/speech_to_text')
 def speech_to_text_route():

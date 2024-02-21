@@ -24,7 +24,7 @@ class PodcastGenerator:
 
         lang = helpers.get_lang_code_from_country_code(country_code)
 
-        # if the country code is support
+        # if the country code is supported
         assert lang is not None
 
         mkt = f"{lang}-{country_code}"

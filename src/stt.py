@@ -3,6 +3,8 @@ from google.cloud import speech_v1p1beta1 as speech
 from google.cloud import speech
 from google.oauth2 import service_account
 import helpers
+import base64
+
 
 import os
 # Get the service account JSON from the environment variable
@@ -11,7 +13,18 @@ service_account_json = "service.json"
 
 class STT:
 
+    # string to return if audio can't be processed
+    # translated to the specified language
     DEFAULT_STRING = "agenda"
+
+    @staticmethod
+    def create_mp3_from_base64(base64_content, output_file_path):
+        # Decode the base64 content into binary data
+        binary_data = base64.b64decode(base64_content)
+
+        # Write the binary data to a file
+        with open(output_file_path, "wb") as output_file:
+            output_file.write(binary_data)
 
     @staticmethod
     def file_to_text(file_path: str,language_code,country_code):
