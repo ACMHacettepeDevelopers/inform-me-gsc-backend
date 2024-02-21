@@ -14,7 +14,7 @@ RUN pip install -r requirements.txt
 
 # Copy the Flask application code and the service account JSON file into the image
 COPY src/ /app/src/
-COPY service.json /app/src/
+COPY src/service.json /app/src/
 
 # Set the FLASK_APP environment variable
 ENV FLASK_APP=src/flask_app.py

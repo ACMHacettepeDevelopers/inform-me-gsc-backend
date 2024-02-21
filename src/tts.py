@@ -15,7 +15,7 @@ class TTS:
 
         else:
             # TODO ! MUST BE VALID
-            mkt_code = lang_code+country_code
+            mkt_code = lang_code+"-"+country_code
 
             # Instantiates a client
             client = texttospeech.TextToSpeechClient.from_service_account_json(service_account_json)
@@ -26,8 +26,8 @@ class TTS:
             # Build the voice request, select the language code ("en-US") and the ssml
             # voice gender ("neutral")
             voice = texttospeech.VoiceSelectionParams(
-                mkt_code, ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
-            )
+                language_code=mkt_code, ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
+     )
 
             # Select the type of audio file you want returned
             audio_config = texttospeech.AudioConfig(

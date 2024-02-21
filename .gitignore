@@ -104,5 +104,5 @@ ENV/
 /migrate_working_dir/
 
 # Custom
-service.json
+src/service.json
 Dockerfile
