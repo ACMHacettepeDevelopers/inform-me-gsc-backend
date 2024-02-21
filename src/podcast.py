@@ -7,7 +7,7 @@ class PodcastGenerator:
     # TODO
     AVAILABLE_COUNTRIES = dict()
 
-    def __init__(self,):
+    def _init_(self,):
         self.news_client = BingNewsClient(BING_API_KEY)
         self.audio = None
 
@@ -31,10 +31,9 @@ class PodcastGenerator:
 
         articles = None
 
+
         try:
-            response = self.news_client.fetch_news_query(query=q, mkt=mkt, lang=lang, count=count)
-            response.raise_for_status()
-            results = response.json()
+            results = self.news_client.fetch_news_query(query=q, mkt=mkt, lang=lang, count=count)
             articles = helpers.get_articles_from_res(results)
 
         except requests.exceptions.HTTPError as err:
