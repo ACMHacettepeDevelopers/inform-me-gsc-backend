@@ -2,6 +2,7 @@ from google.cloud import speech_v1p1beta1 as speech
 
 from google.cloud import speech
 from google.oauth2 import service_account
+import helpers
 
 import os
 # Get the service account JSON from the environment variable
@@ -34,4 +35,4 @@ class STT:
             return response.results[0].alternatives[0]
 
         else:
-            return STT.DEFAULT_STRING
+            return helpers.get_category_translations(country_code,STT.DEFAULT_STRING)

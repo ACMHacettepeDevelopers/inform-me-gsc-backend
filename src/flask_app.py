@@ -63,7 +63,8 @@ def translate_categories_route():
 @app.route('/upload_mp3')
 def upload_mp3():
     """Uploads the mp3 file in the request to the server
-    Use user id in podcast_file_name"""
+    First call this route to perform STT
+    Use user id in podcast_file_name, don't put .mp3 at the end!"""
     try:
         # Get the content of the MP3 file from the request
         mp3_content = request.get_data()

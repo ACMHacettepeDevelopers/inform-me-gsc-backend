@@ -4,6 +4,7 @@
 from google.cloud import texttospeech
 from podcast import PodcastGenerator
 
+service_account_json = "service.json"
 class STT:
 
     @staticmethod
