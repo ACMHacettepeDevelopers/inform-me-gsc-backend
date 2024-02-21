@@ -5,10 +5,8 @@ from stt import STT
 
 import helpers
 
-app = Flask(__name__)
-
 podcast_generator = PodcastGenerator()
-
+app = Flask(__name__)
 
 @app.route('/create_podcast')
 def create_podcast_route():
@@ -67,7 +65,7 @@ def upload_mp3():
     Use user id in podcast_file_name, don't put .mp3 at the end!"""
     try:
         # Get the content of the MP3 file from the request
-        mp3_content = request.get_data()
+        mp3_content = request.headers.get('mp3')
 
         # Get the user ID (or podcast file name) from the request
         file_name = request.args.get("podcast_file_name")

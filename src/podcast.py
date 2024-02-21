@@ -1,13 +1,13 @@
 from news_api_client import *
 from audio import *
 
-BING_API_KEY = "5b2e0286ad034db9b02130766e96cb02"
+BING_API_KEY = "52162b3c906542b8b94572ef502a9b9e"
 
 class PodcastGenerator:
     # TODO
     AVAILABLE_COUNTRIES = dict()
 
-    def _init_(self,):
+    def __init__(self):
         self.news_client = BingNewsClient(BING_API_KEY)
         self.audio = None
 
