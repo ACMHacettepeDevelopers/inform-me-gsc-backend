@@ -106,3 +106,4 @@ ENV/
 # Custom
 src/service.json
 Dockerfile
+/*.mp3
