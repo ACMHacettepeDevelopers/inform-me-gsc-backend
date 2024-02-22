@@ -29,7 +29,7 @@ class Audio:
 
         # STRINGS
         self.str_date_today = date.today().strftime('%B %d, %Y')  # Format the date as a readable string
-        self.str_article_skip = 'Details are at '
+        self.str_details = 'Details are at '
         self.str_new_article = "Now we are heading to the next news."
         self.str_not_found = "Sorry, no news or articles were found."
         self.str_news_end = "These were the news."
@@ -40,7 +40,7 @@ class Audio:
         # if lang is not english, need to translate these
         if lang != "en":
             self._translator = MyTranslator(to_lang=lang, debug=debug_mode)
-            self.str_article_skip = self._translator.translate(self.str_article_skip)
+            #self.str_article_skip = self._translator.translate(self.str_article_skip)
             self.str_new_article = self._translator.translate(self.str_new_article)
             self.str_not_found = self._translator.translate(self.str_not_found)
             self.str_intro = self._translator.translate(self.str_intro)
@@ -106,7 +106,7 @@ class Audio:
 
             # write transcript
             transcript += script_to_audit
-            transcript += self.str_details + ": " + {article.URL}
+            transcript += self.str_details + ": " + article.URL
             transcript += "/n"
 
             # add the source to audio
