@@ -1,7 +1,7 @@
 from news_api_client import *
 from audio import *
 
-BING_API_KEY = "fe8cb194b61041559fac04f854aab9f3"
+BING_API_KEY = "09056a83b053449c995a9e61fdd5fa3a"
 
 class PodcastGenerator:
     # TODO
