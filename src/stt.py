@@ -45,7 +45,7 @@ class STT:
         response = client.recognize(config=config, audio=audio)
 
         if len(response.results) != 0:
-            return response.results[0].alternatives[0]
+            return response.results[0].alternatives[0].transcript
 
         else:
             return helpers.get_category_translations(country_code,STT.DEFAULT_STRING)
