@@ -21,7 +21,7 @@ def create_podcast_route():
 
     count = request.args.get("count")
 
-    podcast_file_path = "server_"+ request.args.get("podcast_file_name")
+    podcast_file_path = "server_cr"+ request.args.get("podcast_file_name")
 
     mode = request.args.get("mode")
 
@@ -34,7 +34,7 @@ def create_podcast_route():
 
 @app.route('/get_transcript')
 def get_transcript_route():
-    podcast_file_name = "server_"+request.args.get("podcast_file_name")
+    podcast_file_name = "server_cr"+request.args.get("podcast_file_name")
 
     transcript = podcast_generator.get_transcript(podcast_file_name)
 
@@ -71,7 +71,7 @@ def upload_mp3():
         # Get the user ID (podcast file name) from the request
         file_name = request.args.get("podcast_file_name")
 
-        file_path = "server_"+file_name + ".mp3"
+        file_path = "server_up"+file_name + ".mp3"
 
         # create mp3 from base 64
         STT.create_mp3_from_base64(mp3_base_64,file_path)
