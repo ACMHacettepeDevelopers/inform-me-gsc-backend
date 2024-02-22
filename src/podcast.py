@@ -1,7 +1,7 @@
 from news_api_client import *
 from audio import *
 
-BING_API_KEY = "52162b3c906542b8b94572ef502a9b9e"
+BING_API_KEY = "fe8cb194b61041559fac04f854aab9f3"
 
 class PodcastGenerator:
     # TODO
@@ -24,13 +24,12 @@ class PodcastGenerator:
 
         lang = helpers.get_lang_code_from_country_code(country_code)
 
-        # if the country code is supported
+        # if the country code is support
         assert lang is not None
 
         mkt = f"{lang}-{country_code}"
 
         articles = None
-
 
         try:
             results = self.news_client.fetch_news_query(query=q, mkt=mkt, lang=lang, count=count)
@@ -48,6 +47,7 @@ class PodcastGenerator:
         self.audio = Audio(articles=articles, query=q, lang=lang, country_code=country_code,
                            output_name=podcast_file_name, debug_mode=debug_mode)
 
+        print("creating the audio")
         self.audio.create_audio()
 
         # save transcript

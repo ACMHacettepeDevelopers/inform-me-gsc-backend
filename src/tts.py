@@ -8,6 +8,30 @@ service_account_json = "service.json"
 class TTS:
 
     @staticmethod
+    def get_ssml_p_break_token(mode):
+        # on the start
+        if mode == 0:
+            return "<p>"
+        
+        else:
+            return "</p>"
+
+
+    @staticmethod
+    def get_ssml_s_break_token(mode):
+
+        # on the start
+        if mode == 0:
+            return "<s>"
+        else:
+            return "</s>"
+
+
+    @staticmethod
+    def get_ssml_break(seconds:str):
+        return f'<break time="{seconds}"/>'
+        
+    @staticmethod
     def save_audio(debug_mode,text,lang_code,output_file_name,country_code =None):
         if debug_mode:
             tts = gTTS(text=text, lang=lang_code, tld="com")
@@ -21,7 +45,7 @@ class TTS:
             client = texttospeech.TextToSpeechClient.from_service_account_json(service_account_json)
 
             # Set the text input to be synthesized
-            synthesis_input = texttospeech.SynthesisInput(text=text)
+            synthesis_input = texttospeech.SynthesisInput(ssml=text)
 
             # Build the voice request, select the language code ("en-US") and the ssml
             # voice gender ("neutral")
