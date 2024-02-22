@@ -96,7 +96,7 @@ class Audio:
             # add sources
             script_to_audit += source_audit
 
-            transcript += f"Details are at {article.URL}"
+            transcript += f"Details are at: {article.URL}"
 
             if len(script_to_audit) != 0:
                 # text_articles += Audio.gTTS_pause + script_to_audit
