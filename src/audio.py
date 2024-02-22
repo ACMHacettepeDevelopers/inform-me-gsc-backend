@@ -29,18 +29,19 @@ class Audio:
 
         # STRINGS
         self.str_date_today = date.today().strftime('%B %d, %Y')  # Format the date as a readable string
-        self.str_details = 'Details are at '
+        self.str_article_skip = 'Details are at '
         self.str_new_article = "Now we are heading to the next news."
         self.str_not_found = "Sorry, no news or articles were found."
         self.str_news_end = "These were the news."
         self.str_unkown_source = "Sorry, no source were found."
         self.str_news_end = "We've come to the end, thank you for listening."
+        self.str_details = "Details are at"
 
 
         # if lang is not english, need to translate these
         if lang != "en":
             self._translator = MyTranslator(to_lang=lang, debug=debug_mode)
-            #self.str_article_skip = self._translator.translate(self.str_article_skip)
+            self.str_article_skip = self._translator.translate(self.str_article_skip)
             self.str_new_article = self._translator.translate(self.str_new_article)
             self.str_not_found = self._translator.translate(self.str_not_found)
             self.str_intro = self._translator.translate(self.str_intro)
@@ -56,21 +57,18 @@ class Audio:
     def _article_to_text(self, article: Article) -> str:
         """return text of article to audit. Returns Title+Description, return empty text if both description and content is none"""
 
-        if article.TITLE is None:
-            return " "
-        
-        text = article.TITLE + "/n"
+        text = article.TITLE + "\n"
 
         # add title to text
         # text += title + f"{Audio.gTTS_pause}"
         if article.DESCRIPTION is not None:
-            text += article.DESCRIPTION
+            text += article.DESCRIPTION + "\n"
 
         # TODO
         else:
-            text+="Sorry, no description is found for this article"
+            "Sorry no news is found"
 
-        
+        # pause is to create stop in between news
         # token is to eliminate the chance of stops in between sentences
         # text += Audio.gTTS_break_token + self.str_article_skip + Audio.gTTS_break_token + f"{Audio.gTTS_pause}" * 2
         return text
@@ -78,11 +76,8 @@ class Audio:
     def create_audio(self):
         """create audio from provided articles"""
 
-        # if no article is found save the not found audio and log error message
-        # than return
         if self._articles is None or len(self._articles) == 0:
-            TTS.save_audio(debug_mode=self._debug_mode, text=self.str_not_found, lang_code=self._lang,
-                           output_file_name=self.OUTPUT_NAME, country_code=self._country_code)
+            TTS.save_audio(debug_mode=self._debug_mode, text=self.str_not_found, lang_code=self._lang, output_file_name=self.OUTPUT_NAME, country_code=self._country_code)
 
             if self._articles is None:
                 print("No articles could be fetched. Something could be wrong with news api")
@@ -90,65 +85,33 @@ class Audio:
 
         # reset after succesfull fetch
         transcript = ""
-
-        # use ssml
-        if not self._debug_mode:
-            text_articles = "<speak>"
-            print("here")
-            text_articles = self.str_date_today + TTS.get_ssml_break(6)+self.str_intro + TTS.get_ssml_break(1)
-
-        else:
-            text_articles = self.str_date_today + self.str_intro
+        text_articles = self.str_date_today + self.str_intro
 
         for id, article in enumerate(self._articles):
-            # get audio script
+
             script_to_audit = self._article_to_text(article)
-
-            # write transcript
             transcript += script_to_audit
-            transcript += self.str_details + ": " + article.URL
-            transcript += "/n"
 
-            # add the source to audio
             source_audit = f"Details are at {self._get_source_to_audit(article)}"
+
+            # add sources
             script_to_audit += source_audit
 
+            transcript += f"{self.str_details} : {article.URL}\n\n"
 
             if len(script_to_audit) != 0:
-
-                if not self._debug_mode:
-                    text_articles += TTS.get_ssml_p_break_token(0)
-
                 # text_articles += Audio.gTTS_pause + script_to_audit
                 text_articles += script_to_audit
 
                 # if upcoming article exists, add string_new_article text
                 if id != len(self._articles) - 1:
                     # text_articles += self.str_new_article + Audio.gTTS_pause + Audio.gTTS_break_token
-
-                    if not self._debug_mode:
-                        text_articles += TTS.get_ssml_break(2)
-                        text_articles += self.str_new_article
-                        text_articles += TTS.get_ssml_p_break_token(1)
-
-                    else:
-                        text_articles += self.str_new_article
+                    text_articles += self.str_new_article
 
                 # add ending text
                 else:
-
-                    if not self._debug_mode:
-                        text_articles += TTS.get_ssml_break(2)
-                        text_articles += self.str_news_end
-                        text_articles += TTS.get_ssml_p_break_token(1)
-
-                    else:
-                        # text_articles += Audio.gTTS_pause + self.str_news_end
-                        text_articles += self.str_news_end
-
-        # end ssml
-        if self._debug_mode:
-            text_articles += "</speak>"
+                    # text_articles += Audio.gTTS_pause + self.str_news_end
+                    text_articles += self.str_news_end
 
         self._transcript = transcript
 
