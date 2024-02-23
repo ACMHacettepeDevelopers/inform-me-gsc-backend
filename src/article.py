@@ -11,7 +11,3 @@ class Article:
 
     def __repr__(self):
         return f"Description:{self.DESCRIPTION} Source:{self.SOURCE} URL:{self.URL}\n"
-
-    # def __repr__(self):
-    #    return f"Title:{self._TITLE}, Description:{self._description}\n,Summary:{self._summary},PublishedAt:{self._PUBLISH_DATE}\n" \
-    #           f"Source:{self._SOURCE}"
