@@ -14,13 +14,13 @@ RUN pip install -r requirements.txt
 
 # Copy the Flask application code and the service account JSON file into the image
 COPY src/ /app/src/
-COPY src/service.json /app/src/
+COPY service.json /app/src/
 
 # Set the FLASK_APP environment variable
 ENV FLASK_APP=src/flask_app.py
 
 # Set the BING_API_KEY environment variable
-ENV BING_API_KEY="5b2e0286ad034db9b02130766e96cb02"
+ENV BING_API_KEY="   "
 
 # Set the environment variable for the service account JSON file
 ENV GOOGLE_APPLICATION_CREDENTIALS="/app/src/service.json"
