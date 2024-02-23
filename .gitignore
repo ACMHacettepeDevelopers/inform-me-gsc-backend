@@ -103,7 +103,3 @@ ENV/
 /.svn/
 /migrate_working_dir/
 
-# Custom
-src/service.json
-Dockerfile
-/*.mp3
