@@ -20,7 +20,7 @@ COPY service.json /app/src/
 ENV FLASK_APP=src/flask_app.py
 
 # Set the BING_API_KEY environment variable
-ENV BING_API_KEY="   "
+ENV BING_API_KEY="0405e6870fbc49a0b0a537965077ff22"   # temporary use please dont finish the free credit
 
 # Set the environment variable for the service account JSON file
 ENV GOOGLE_APPLICATION_CREDENTIALS="/app/src/service.json"
