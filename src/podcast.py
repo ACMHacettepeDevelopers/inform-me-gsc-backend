@@ -1,7 +1,7 @@
 from news_api_client import *
 from audio import *
 
-BING_API_KEY = "09056a83b053449c995a9e61fdd5fa3a"
+BING_API_KEY = "09056a83b053449c995a9e61fdd5fa3a" # old api key - use your bing api key here
 
 class PodcastGenerator:
     # TODO
@@ -13,7 +13,6 @@ class PodcastGenerator:
 
         # hols the transcripts
         self.transcripts = dict()
-
     def create_podcast(self, country_code, q, count, podcast_file_name, debug_mode=False):
         """Creates news podcast according to params.
         Params:
